@@ -20,4 +20,14 @@ class ProfileInfo extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function specs()
+    {
+        return $this->belongsToMany(Spec::class);
+    }
+
+    public function sponsorships()
+    {
+        return $this->belongsToMany(Sponsorship::class);
+    }
 }

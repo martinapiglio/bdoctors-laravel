@@ -17,12 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProfileInfoSeeder::class,
             SpecSeeder::class,
+            SponsorshipSeeder::class,
         ]);
-        // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }
