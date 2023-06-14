@@ -60,7 +60,7 @@ class ProfileInfoController extends Controller
      */
     public function show(ProfileInfo $profileInfo)
     {
-        dd('ciao');
+        
         // $user_id = Auth::id();
 
         // $profileInfos = ProfileInfo::where('user_id', $user_id)->get();
@@ -82,7 +82,7 @@ class ProfileInfoController extends Controller
      */
     public function edit(ProfileInfo $profileInfo)
     {
-        //
+        return view('admin.profile-infos.edit', compact('profileInfo'));
     }
 
     /**

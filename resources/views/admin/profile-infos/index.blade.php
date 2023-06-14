@@ -11,7 +11,7 @@
 
     qui puoi:<br>
     <a href="{{route('admin.profile-infos.show', $profileInfoItem->slug)}}">mostrare i dati del tuo profilo(show)</a><br>
-    <a href="">modificare i dati del tuo profilo(edit)</a><br>
+    <a href="{{route('admin.profile-infos.edit', $profileInfoItem->slug)}}">modificare i dati del tuo profilo(edit)</a><br>
     <a href="">eliminare i dati del tuo profilo(delete)</a>
 </body>
 </html>

@@ -40,7 +40,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     //dashboard route
     Route::get('/', [DashboardController::class, 'home'])->name('dashboard');
     //profile infos route
-    Route::resource('profile-infos', ProfileInfoController::class)->parameters(['profile_infos'=>'profile_info:slug']);
+    Route::resource('profile-infos', ProfileInfoController::class)->parameters(['profile-infos'=>'profile-info:slug']);
 
 });
 
