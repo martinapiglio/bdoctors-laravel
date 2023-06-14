@@ -7,6 +7,7 @@ use App\Models\Detail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\DB;
 
 class DetailController extends Controller
@@ -53,7 +54,32 @@ class DetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::where('id', Auth::id())->first();
+
+        $formData = $request->all();
+
+        // $this->validation($request);
+
+        $newDetail = new Detail();
+
+        // if($request->hasFile('thumbnail')){
+
+        //     $path = Storage::put('project_img', $request->thumbnail);
+
+        //     $formData['thumbnail'] = $path;
+        // };
+        
+        $newDetail->fill($formData);
+        $newDetail->slug = $user->slug;
+        $newDetail->user_id = $user->id;
+
+        $newDetail->save(); 
+
+        // if(array_key_exists('technologies', $formData)){
+        //     $newProject->technologies()->attach($formData['technologies']);
+        // }
+
+        return redirect()->route('admin.details.show', $newDetail->slug);
     }
 
     /**
