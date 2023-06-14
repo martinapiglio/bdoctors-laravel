@@ -20,7 +20,7 @@ return new class extends Migration
             
             //OLD
             $table->timestamp('start_date')->useCurrent();
-            $table->datetime('end_date');
+            $table->datetime('end_date');   
 
             //TRY
             // $sponsorship = Sponsorship::find($name);
