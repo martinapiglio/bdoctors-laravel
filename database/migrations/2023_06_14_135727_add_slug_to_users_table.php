@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('profile_infos', function (Blueprint $table) {
-            $table->string('slug')->after('id');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('slug')->after('surname');
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('profile_infos', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('slug');
         });
     }

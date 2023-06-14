@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'surname',
+        'slug',
         'address',
         'description',
         'email',
@@ -45,9 +46,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function profileInfo()
+    public function detail()
     {
-        return $this->hasOne(ProfileInfo::class);
+        return $this->hasOne(Detail::class);
     }
 
     public function votes()

@@ -9,8 +9,8 @@ class Spec extends Model
 {
     use HasFactory;
 
-    public function profileInfos()
+    public function details()
     {
-        return $this->belongsToMany(ProfileInfo::class);
+        return $this->belongsToMany(Details::class);
     }
 }

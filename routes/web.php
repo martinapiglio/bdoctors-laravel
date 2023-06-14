@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ProfileInfoController;
+use App\Http\Controllers\Admin\DetailController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -39,8 +39,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function(){
     //dashboard route
     Route::get('/', [DashboardController::class, 'home'])->name('dashboard');
-    //profile infos route
-    Route::resource('profile-infos', ProfileInfoController::class)->parameters(['profile-infos'=>'profile-info:slug']);
+    //details route
+    Route::resource('details', DetailController::class)->parameters(['details'=>'detail:slug']);
 
 });
 

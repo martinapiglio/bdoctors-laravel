@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Sponsorship;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('profile_info_sponsorship', function (Blueprint $table) {
-            $table->unsignedBigInteger('profile_info_id');
+        Schema::create('detail_sponsorship', function (Blueprint $table) {
+            $table->unsignedBigInteger('detail_id');
             $table->unsignedBigInteger('sponsorship_id');
             
             //OLD
@@ -28,9 +27,8 @@ return new class extends Migration
             // $expires_at = $created_at->copy()->addHours($sponsorship->duration);
             //
 
-            $table->foreign('profile_info_id')->references('id')->on('profile_infos')->onDelete('cascade');
+            $table->foreign('detail_id')->references('id')->on('details')->onDelete('cascade');
             $table->foreign('sponsorship_id')->references('id')->on('sponsorships')->onDelete('cascade');
-            
         });
     }
 
@@ -41,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profile_info_sponsorship');
+        Schema::dropIfExists('detail_sponsorship');
     }
 };
