@@ -2,17 +2,16 @@
 
 @section('content')
 <div class="container py-5">
-    dashboard
+    <h3 class="mb-4">dashboard</h3>
 
     @if(!$detail)
     <div>
-        <a href="{{route('admin.details.create', $user->slug)}}">crea i dati del tuo profilo(create)</a>
+        <a href="{{route('admin.details.create', $user->slug)}}">crea i dati del tuo profilo</a>
     </div>
     @else
     <div>
-        <a href="{{route('admin.details.show', $detail->slug)}}">mostrare i dati del tuo profilo(show)</a><br>
-        <a href="{{route('admin.details.edit', $detail->slug)}}">modificare i dati del tuo profilo(edit)</a><br>
-        <a href="">eliminare i dati del tuo profilo(delete)</a>
+        <a href="{{route('admin.details.show', $detail->slug)}}">mostra i dati del tuo profilo</a><br>
+        <a href="{{route('admin.details.edit', $detail->slug)}}">modifica i dati del tuo profilo</a><br>
     </div>
     @endif
 

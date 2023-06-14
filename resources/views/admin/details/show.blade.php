@@ -7,14 +7,14 @@
 
     <div>
         <img src="{{ asset('storage/' . $detail->profile_pic) }}" alt=""> <br>
-        Name: {{ $detail->user?->name }} <br>
-        Surname: {{ $detail->user?->surname }} <br>
-        Address: {{ $detail->user?->address }} <br>
-        Description: {{ $detail->user?->description }} <br>
-        Email: {{ $detail->user?->email }} <br>
-        Telephone no: {{ $detail->phone_number }} <br>
-        Services: {{ $detail->services }}    <br>
-        Specs:         
+        <strong>Nome:</strong> {{ $detail->user?->name }} <br>
+        <strong>Cognome:</strong> {{ $detail->user?->surname }} <br>
+        <strong>Indirizzo:</strong> {{ $detail->user?->address }} <br>
+        <strong>Descrizione:</strong> {{ $detail->user?->description }} <br>
+        <strong>Email:</strong> {{ $detail->user?->email }} <br>
+        <strong>Numero di telefono:</strong> {{ $detail->phone_number }} <br>
+        <strong>Prestazioni:</strong> {{ $detail->services }}    <br>
+        <strong>Specializzazioni:</strong>         
         
         @if(count($detail->specs) > 0)
             <ul>
@@ -28,7 +28,7 @@
         @endif
     </div>
 
-    <a href="{{route('admin.details.edit', $detail->slug)}}">Modifica</a>
+    <button class="btn btn-dark" type="submit"><a href="{{route('admin.details.edit', $detail->slug)}}">Modifica</a></button>
 
     {{-- modal --}}
     <button type="button" class="btn bg-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteProject">

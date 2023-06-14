@@ -191,13 +191,13 @@ class DetailController extends Controller
         $formData = $request->all(); 
 
         $validator = Validator::make($formData, [
-            'curriculum' => 'nullable|pdf|max:10240',
+            'curriculum' => 'nullable|mimes:pdf|max:10240',
             'profile_pic' => 'nullable|image|max:4096',
             'phone_number' => 'nullable|max:50',
             'services' => 'nullable|max:500',
             'specs' => 'exists:specs,id'
         ], [
-            'curriculum' => 'Curriculum must be a pdf file',
+            'curriculum.mimes' => 'Curriculum must be a pdf file',
             'curriculum.max' => "Curriculum size exceeding 10MB, please try again.",
             'profile_pic.image' => "Profile picture must be an image file.",
             'profile_pic.max' => "Profile picture size exceeding 4MB, please try again.",

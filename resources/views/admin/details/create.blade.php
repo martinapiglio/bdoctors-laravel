@@ -25,7 +25,7 @@
 
         {{-- profile_pic - FILE --}}
         <div class="input-group mb-3">
-            <label for="profile_pic">Profile Picture</label>
+            <label for="profile_pic">Foto profilo</label>
             <input class="mx-3 form-control @error('profile_pic') is-invalid @enderror" type="file" id="profile_pic" name="profile_pic">
             
             @error('profile_pic')
@@ -37,8 +37,8 @@
 
         {{-- phone_number --}}
         <div class="input-group mb-3">
-            <label for="phone_number">Phone number</label>
-            <input class="mx-3 form-control @error('thumb') is-invalid @enderror" type="text" id="phone_number" name="phone_number" value="{{old('phone_number')}}">
+            <label for="phone_number">Numero di telefono</label>
+            <input class="mx-3 form-control @error('phone_number') is-invalid @enderror" type="text" id="phone_number" name="phone_number" value="{{old('phone_number')}}">
                             
             @error('phone_number')
                 <div class="invalid-feedback">
@@ -49,8 +49,8 @@
 
         {{-- services --}}
         <div class="input-group mb-3">
-            <label for="services">Services</label>
-            <textarea class="mx-3 form-control @error('services') is-invalid @enderror" id="services" name="services" required>{{old('services')}}</textarea>
+            <label for="services">Prestazioni</label>
+            <textarea class="mx-3 form-control @error('services') is-invalid @enderror" id="services" name="services">{{old('services')}}</textarea>
                         
             @error('services')
                 <div class="invalid-feedback">
@@ -61,7 +61,7 @@
 
         {{-- specs --}}
         <div class="input-group mb-3">
-            Specs:
+            Specializzazioni:
             
             @foreach($specs as $spec)
                 <div class="form-check">
@@ -78,7 +78,7 @@
 
         </div>
 
-        <button class="btn btn-dark" type="submit">Add</button>
+        <button class="btn btn-dark" type="submit">Aggiungi</button>
     </form>
 
 </div>
