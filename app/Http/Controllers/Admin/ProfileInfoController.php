@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Str;
 use App\Models\ProfileInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProfileInfoController extends Controller
 {
@@ -15,7 +18,7 @@ class ProfileInfoController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -47,7 +50,20 @@ class ProfileInfoController extends Controller
      */
     public function show(ProfileInfo $profileInfo)
     {
-        //
+        $user_id = Auth::id();
+
+        $profileInfos = ProfileInfo::where('user_id', $user_id)->get();
+        // $user = DB::table('users')->where('id', $user_id)->get();
+
+        // $slug = $user[0]->name . '-' . $user[0]->surname;
+
+        if(count($profileInfos) > 0 ) {
+            $profileInfoItem = $profileInfos[0];
+        } else {
+            $profileInfoItem = false;
+        };
+
+        return view('admin.profile-infos.show', compact('profileInfoItem'));
     }
 
     /**

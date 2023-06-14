@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProfileInfoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,19 +17,31 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// $user_id = Auth::id();
+// $user = DB::table('users')->where('id', $user_id)->get();
+// $slug = $user[0]->name . '-' . $user[0]->surname;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function(){
+    //dashboard route
+    Route::get('/', [DashboardController::class, 'home'])->name('dashboard');
+    //profile infos route
+    Route::resource('profile-infos', ProfileInfoController::class)->parameters(['profile_infos'=>'profile_info:slug']);
+
 });
 
 require __DIR__.'/auth.php';

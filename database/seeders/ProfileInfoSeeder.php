@@ -6,6 +6,7 @@ use App\Models\ProfileInfo;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\DB;
 
 class ProfileInfoSeeder extends Seeder
 {
