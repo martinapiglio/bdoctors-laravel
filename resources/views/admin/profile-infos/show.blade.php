@@ -9,11 +9,12 @@
 <body>
     show
 
-    @if($profileInfoItem) 
+    @if($profileInfo) 
 
     <div>
-        {{ $profileInfoItem->phone_number }}
-        {{ $profileInfoItem->user?->name }}
+        {{ $profileInfo->slug }}
+        {{ $profileInfo->phone_number }}
+        {{ $profileInfo->user?->name }}
     </div>
 
     @else 

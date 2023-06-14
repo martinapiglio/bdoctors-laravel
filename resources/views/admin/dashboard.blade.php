@@ -9,7 +9,7 @@
 <body>
     dashboard prova
 
-    <a href="{{ route('admin.profile-infos.show', ['profile_infos' => $profile_infos])}}">vai al profilo</a>
+    <a href=" {{ route('admin.profile-infos.index')}} ">vai alla index profile</a>
 
 </body>
 </html>
