@@ -71,21 +71,6 @@
                             </div>
                         </div>
 
-                        {{-- spec --}}
-                        <div class="mb-4 row">
-                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Specializzazione *') }}</label>
-
-                            <div class="col-md-6">
-                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required>{{ old('description') }}</textarea>
-
-                                @error('description')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
                         {{-- email --}}
                         <div class="mb-4 row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-mail *') }}</label>
