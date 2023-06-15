@@ -193,16 +193,19 @@ class DetailController extends Controller
         $validator = Validator::make($formData, [
             'curriculum' => 'nullable|mimes:pdf|max:10240',
             'profile_pic' => 'nullable|image|max:4096',
-            'phone_number' => 'nullable|max:50',
-            'services' => 'nullable|max:500',
+            'phone_number' => 'required|min:10|max:25',
+            'services' => 'required|max:500',
             'specs' => 'exists:specs,id'
         ], [
             'curriculum.mimes' => 'Curriculum must be a pdf file',
             'curriculum.max' => "Curriculum size exceeding 10MB, please try again.",
             'profile_pic.image' => "Profile picture must be an image file.",
             'profile_pic.max' => "Profile picture size exceeding 4MB, please try again.",
-            'phone_number.max' => 'Phone number cannot be longer than 50 characters.',
-            'services.max' => 'Services field cannot be longer than 500 characters.',
+            'phone_number.required' => "Il numero di telefono è obbligatorio.",
+            'phone_number.min' => 'Il numero di telefono deve essere di almeno 10 caratteri.',
+            'phone_number.max' => 'Il numero di telefono non può essere più lungo di 25 caratteri.',
+            'services.required' => 'Le prestazioni sono obbligatorie.',
+            'services.max' => 'Il campo sulle prestazioni non può contenere più di 500 caratteri.',
             'specs.exists' => 'Please select a specialization chosen among the existing ones',
 
         ])->validate();

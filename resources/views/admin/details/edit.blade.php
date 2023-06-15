@@ -3,14 +3,14 @@
 @section('content')
 <div class="container py-5">
 
-    <form action=" {{ route('admin.details.update', $detail->slug) }} " method="POST" enctype="multipart/form-data">
+    <form action=" {{ route('admin.details.update', $detail->slug) }} " method="POST" enctype="multipart/form-data" id="form">
         @csrf 
         @method('PUT')
 
         {{-- curriculum - FILE --}}
         <div class="input-group mb-3">
             <label for="curriculum">Curriculum</label>
-            <input class="mx-3 form-control @error('curriculum') is-invalid @enderror" type="file" id="curriculum" name="curriculum">
+            <input class="mx-3 form-control @error('curriculum') is-invalid @enderror" type="file" id="curriculum" name="curriculum" accept="application/pdf">
             
             @error('curriculum')
                 <div class="invalid-feedback">
@@ -22,7 +22,7 @@
         {{-- profile_pic - FILE --}}
         <div class="input-group mb-3">
             <label for="profile_pic">Foto profilo</label>
-            <input class="mx-3 form-control @error('profile_pic') is-invalid @enderror" type="file" id="profile_pic" name="profile_pic">
+            <input class="mx-3 form-control @error('profile_pic') is-invalid @enderror" type="file" id="profile_pic" name="profile_pic" accept="image/*">
             
             @error('profile_pic')
                 <div class="invalid-feedback">
@@ -34,7 +34,7 @@
         {{-- phone_number --}}
         <div class="input-group mb-3">
             <label for="phone_number">Numero di telefono</label>
-            <input class="mx-3 form-control @error('phone_number') is-invalid @enderror" type="text" id="phone_number" name="phone_number" value="{{old('phone_number') ?? $detail->phone_number}}">
+            <input class="mx-3 form-control @error('phone_number') is-invalid @enderror" type="text" id="phone_number" name="phone_number" required minlength="10" maxlength="25" value="{{old('phone_number') ?? $detail->phone_number}}">
                             
             @error('phone_number')
                 <div class="invalid-feedback">
@@ -46,7 +46,7 @@
         {{-- services --}}
         <div class="input-group mb-3">
             <label for="services">Prestazioni</label>
-            <textarea class="mx-3 form-control @error('services') is-invalid @enderror" id="services" name="services">{{old('services') ?? $detail->services }}</textarea>
+            <textarea class="mx-3 form-control @error('services') is-invalid @enderror" id="services" name="services" required maxlength="500">{{old('services') ?? $detail->services }}</textarea>
                         
             @error('services')
                 <div class="invalid-feedback">
