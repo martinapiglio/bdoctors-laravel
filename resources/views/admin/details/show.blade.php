@@ -6,7 +6,19 @@
     @if($detail) 
 
     <div>
-        <img src="{{ asset('storage/' . $detail->profile_pic) }}" alt=""> <br>
+        @if($detail->profile_pic) 
+        <img src="{{ asset('storage/' . $detail->profile_pic) }}" alt="">
+        @else
+        <img class="__img-anonimo" src="{{ asset('storage/profile_pic_folder/anonimo.jpg') }}" alt="">
+        @endif
+        
+        <br>
+
+        <div class="my-4">
+            <a href="{{ asset('storage/'. $detail->curriculum) }}" target="_blank" class="btn btn-primary">View CV</a> 
+            <a href="{{ asset('storage/'. $detail->curriculum) }}" download="{{ $detail->slug . '-cv'}}" class="btn btn-primary">Download CV</a>
+        </div>
+
         <strong>Nome:</strong> {{ $detail->user?->name }} <br>
         <strong>Cognome:</strong> {{ $detail->user?->surname }} <br>
         <strong>Indirizzo:</strong> {{ $detail->user?->address }} <br>

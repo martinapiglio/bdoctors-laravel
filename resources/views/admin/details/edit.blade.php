@@ -33,7 +33,7 @@
 
         {{-- phone_number --}}
         <div class="input-group mb-3">
-            <label for="phone_number">Numero di telefono</label>
+            <label for="phone_number">Numero di telefono *</label>
             <input class="mx-3 form-control @error('phone_number') is-invalid @enderror" type="text" id="phone_number" name="phone_number" required minlength="10" maxlength="25" value="{{old('phone_number') ?? $detail->phone_number}}">
                             
             @error('phone_number')
@@ -45,7 +45,7 @@
 
         {{-- services --}}
         <div class="input-group mb-3">
-            <label for="services">Prestazioni</label>
+            <label for="services">Prestazioni *</label>
             <textarea class="mx-3 form-control @error('services') is-invalid @enderror" id="services" name="services" required maxlength="500">{{old('services') ?? $detail->services }}</textarea>
                         
             @error('services')
@@ -57,7 +57,7 @@
 
         {{-- specs --}}
         <div class="input-group mb-3">
-            Specializzazioni:
+            Specializzazioni *:
             
             @foreach($specs as $spec)
             <div class="form-check">
@@ -77,6 +77,8 @@
             @enderror
 
         </div>
+
+        <div class="text-center mb-4">I campi contrassegnati con * sono obbligatori.</div>
 
         <button class="btn btn-dark" type="submit">Modifica</button>
     </form>
