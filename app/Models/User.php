@@ -23,6 +23,7 @@ class User extends Authenticatable
         'slug',
         'address',
         'description',
+        'mainspec',
         'email',
         'password',
     ];

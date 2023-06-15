@@ -26,7 +26,8 @@
         <strong>Email:</strong> {{ $detail->user?->email }} <br>
         <strong>Numero di telefono:</strong> {{ $detail->phone_number }} <br>
         <strong>Prestazioni:</strong> {{ $detail->services }}    <br>
-        <strong>Specializzazioni:</strong>         
+        <strong>Specializzazione principale:</strong> {{ $detail->user?->mainspec }}<br>
+        <strong>Specializzazioni aggiuntive:</strong>  
         
         @if(count($detail->specs) > 0)
             <ul>

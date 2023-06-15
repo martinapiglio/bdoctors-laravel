@@ -45,7 +45,9 @@ class DetailController extends Controller
     {
         $detail = Detail::where('user_id', Auth::id())->first();
         $user = User::where('id', Auth::id())->first();
-        $specs = Spec::all();
+        
+        $specs = Spec::where('title', '!=', $user->mainspec)->get();
+        // dd($specs);
 
         return view('admin.details.create', compact('detail', 'user', 'specs'));
     }
@@ -114,7 +116,8 @@ class DetailController extends Controller
      */
     public function edit(Detail $detail)
     {
-        $specs = Spec::all();
+        $user = User::where('id', Auth::id())->first();
+        $specs = Spec::where('title', '!=', $user->mainspec)->get();
 
         return view('admin.details.edit', compact('detail', 'specs'));
     }

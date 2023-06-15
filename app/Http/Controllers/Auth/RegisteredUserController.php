@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Spec;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -20,8 +21,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-
-        return view('auth.register');
+        $specs = Spec::all();
+        return view('auth.register', compact('specs'));
     }
 
     /**
@@ -60,6 +61,7 @@ class RegisteredUserController extends Controller
             'slug'=> strtolower($request->name) . '-' . strtolower($request->surname), 
             'address' => $request->address,
             'description' => $request->description,
+            'mainspec' => $request->mainspec,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

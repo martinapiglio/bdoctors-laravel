@@ -61,7 +61,7 @@
 
         {{-- specs --}}
         <div class="input-group mb-3">
-            Specializzazioni *:
+            Specializzazioni aggiuntive* :
 
             @foreach($specs as $spec)
                 <div class="form-check">

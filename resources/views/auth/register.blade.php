@@ -101,6 +101,25 @@
                             </div>
                         </div>
 
+                        {{-- specs --}}
+                        <div class="input-group mb-3">
+                            Specializzazione principale *:
+
+                            @foreach($specs as $spec)
+                                <div class="form-check">
+                                    <input type="radio" id="spec-{{$spec->id}}" name="mainspec" value="{{$spec->title}}">
+                                    <label for="spec-{{$spec->id}}">{{$spec->title}}</label>
+                                </div>
+                            @endforeach
+                            
+                            @error('mainspec')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                        </div>
+
                         {{-- password --}}
                         <div class="mb-4 row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password *') }}</label>
@@ -143,32 +162,32 @@
 </div>
 
 <script>
-    // let password = document.getElementById("password")
-    // let pswConfirmed = document.getElementById("password-confirm");
+    let password = document.getElementById("password")
+    let pswConfirmed = document.getElementById("password-confirm");
     
-    // function checkPswChar() {
+    function checkPswChar() {
 
-    //     const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+        const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
 
-    //     if (!pattern.test(password.value)) {
-    //         password.setCustomValidity("La password non è valida, deve contenere almeno 8 caratteri di cui una minuscola, una maiuscola, un carattere speciale.");
-    //     } else {
-    //         password.setCustomValidity('');
-    //     }
-    // }
+        if (!pattern.test(password.value)) {
+            password.setCustomValidity("La password non è valida, deve contenere almeno 8 caratteri di cui una minuscola, una maiuscola, un carattere speciale.");
+        } else {
+            password.setCustomValidity('');
+        }
+    }
     
-    // password.oninput = checkPswChar;
-    // password.onkeyup = checkPswChar;
+    password.oninput = checkPswChar;
+    password.onkeyup = checkPswChar;
 
-    // function validatePassword(){
-    //     if(password.value != pswConfirmed.value) {
-    //         pswConfirmed.setCustomValidity("Le password non coincidono");
-    //     } else {
-    //         pswConfirmed.setCustomValidity('');
-    //     }
-    // }
+    function validatePassword(){
+        if(password.value != pswConfirmed.value) {
+            pswConfirmed.setCustomValidity("Le password non coincidono");
+        } else {
+            pswConfirmed.setCustomValidity('');
+        }
+    }
 
-    // password.onchange = validatePassword;
-    // pswConfirmed.onkeyup = validatePassword;
+    password.onchange = validatePassword;
+    pswConfirmed.onkeyup = validatePassword;
 </script>
 @endsection
