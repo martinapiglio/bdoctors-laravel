@@ -36,8 +36,22 @@ class RegisteredUserController extends Controller
             'surname' => ['required', 'string', 'max:50'],
             'address' => ['required', 'string', 'max:100'],
             'description' => ['required', 'string', 'max:500'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:500', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ],
+        [   
+            'name.required' => 'Il nome è obbligatorio.',
+            'name.max' => 'Il nome non può essere più lungo di 50 caratteri.',
+            'surname.required' => 'Il cognome è obbligatorio.',
+            'surname.max' => 'Il cognome non può essere più lungo di 50 caratteri.',
+            'address.required' => "L'indirizzo è obbligatorio.",
+            'address.max' => "L'indirizzo non può essere più lungo di 100 caratteri.",
+            'description.required' => 'La descrizione è obbligatoria.',
+            'description.max' => 'La descrizione non può essere più lunga di 500 caratteri.',
+            'email.required' => "L'email è obbligatoria.",
+            'email.email' => "L'email deve essere valida.",
+            'email.max' => "L'email non può essere più lunga di 500 caratteri.",
+            'password.required' => "La password è obbligatoria."
         ]);
 
         $user = User::create([

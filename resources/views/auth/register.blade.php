@@ -91,7 +91,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-mail *') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required minlength="3" maxlength="255" autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required minlength="3" maxlength="500" autocomplete="email">
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -143,32 +143,32 @@
 </div>
 
 <script>
-    let password = document.getElementById("password")
-    let pswConfirmed = document.getElementById("password-confirm");
+    // let password = document.getElementById("password")
+    // let pswConfirmed = document.getElementById("password-confirm");
     
-    function checkPswChar() {
+    // function checkPswChar() {
 
-        const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+    //     const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
 
-        if (!pattern.test(password.value)) {
-            password.setCustomValidity("La password non è valida, deve contenere almeno 8 caratteri di cui una minuscola, una maiuscola, un carattere speciale.");
-        } else {
-            password.setCustomValidity('');
-        }
-    }
+    //     if (!pattern.test(password.value)) {
+    //         password.setCustomValidity("La password non è valida, deve contenere almeno 8 caratteri di cui una minuscola, una maiuscola, un carattere speciale.");
+    //     } else {
+    //         password.setCustomValidity('');
+    //     }
+    // }
     
-    password.oninput = checkPswChar;
-    password.onkeyup = checkPswChar;
+    // password.oninput = checkPswChar;
+    // password.onkeyup = checkPswChar;
 
-    function validatePassword(){
-        if(password.value != pswConfirmed.value) {
-            pswConfirmed.setCustomValidity("Le password non coincidono");
-        } else {
-            pswConfirmed.setCustomValidity('');
-        }
-    }
+    // function validatePassword(){
+    //     if(password.value != pswConfirmed.value) {
+    //         pswConfirmed.setCustomValidity("Le password non coincidono");
+    //     } else {
+    //         pswConfirmed.setCustomValidity('');
+    //     }
+    // }
 
-    password.onchange = validatePassword;
-    pswConfirmed.onkeyup = validatePassword;
+    // password.onchange = validatePassword;
+    // pswConfirmed.onkeyup = validatePassword;
 </script>
 @endsection

@@ -197,16 +197,16 @@ class DetailController extends Controller
             'services' => 'required|max:500',
             'specs' => 'exists:specs,id'
         ], [
-            'curriculum.mimes' => 'Curriculum must be a pdf file',
-            'curriculum.max' => "Curriculum size exceeding 10MB, please try again.",
-            'profile_pic.image' => "Profile picture must be an image file.",
-            'profile_pic.max' => "Profile picture size exceeding 4MB, please try again.",
+            'curriculum.mimes' => 'Il file di curriculum deve essere di formato pdf.',
+            'curriculum.max' => "Il file di curriculum non può superare i 10MB di grandezza, riprova.",
+            'profile_pic.image' => "Il file inserito deve essere un'immagine.",
+            'profile_pic.max' => "L'immagine di profilo non può superare i 4MB di grandezza, riprova.",
             'phone_number.required' => "Il numero di telefono è obbligatorio.",
             'phone_number.min' => 'Il numero di telefono deve essere di almeno 10 caratteri.',
             'phone_number.max' => 'Il numero di telefono non può essere più lungo di 25 caratteri.',
             'services.required' => 'Le prestazioni sono obbligatorie.',
             'services.max' => 'Il campo sulle prestazioni non può contenere più di 500 caratteri.',
-            'specs.exists' => 'Please select a specialization chosen among the existing ones',
+            'specs.exists' => 'Seleziona le specializzazioni tra quelle qui riportate.',
 
         ])->validate();
 
