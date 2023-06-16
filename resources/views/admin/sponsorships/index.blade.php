@@ -9,8 +9,8 @@
         <div class="card-body">
           <h5 class="card-title"> {{ $sponsorship->name }} </h5>
           <h6 class="card-subtitle mb-2 text-muted">Prezzo: {{ $sponsorship->price }} €</h6>
-          <p class="card-text"> La sponsorizzazione del tuo profilo durerà {{ $sponsorship->duration }} ore </p>
-          <a href="#" class="btn btn-primary">Acquista</a>
+          <p class="card-text"> La sponsorizzazione del tuo profilo durerà {{ $sponsorship->duration }} ore</p>
+          <a href="{{ route('admin.sponsorships.show', $sponsorship->slug) }}" class="btn btn-primary">Acquista</a>
         </div>
     </div>
     @endforeach

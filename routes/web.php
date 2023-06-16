@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DetailController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\SponsorshipController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('details', DetailController::class)->parameters(['details'=>'detail:slug']);
     //sponsorships route
     Route::resource('sponsorships', SponsorshipController::class)->parameters(['sponsorships'=>'sponsorship:slug']);
+    //checkout route
+    Route::get('/braintree/token', [SponsorshipController::class, 'getClientToken']);
+    Route::post('/purchase', [SponsorshipController::class, 'purchase']);
 
 });
 

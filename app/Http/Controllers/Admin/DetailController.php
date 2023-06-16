@@ -47,7 +47,6 @@ class DetailController extends Controller
         $user = User::where('id', Auth::id())->first();
         
         $specs = Spec::where('title', '!=', $user->mainspec)->get();
-        // dd($specs);
 
         return view('admin.details.create', compact('detail', 'user', 'specs'));
     }
