@@ -15,6 +15,10 @@
     </div>
     @endif
 
+    <div>
+        <a href="{{route('admin.sponsorships.index')}}">Vai alle sponsorizzazioni</a>
+    </div>
+
 </div>
 
 @endsection

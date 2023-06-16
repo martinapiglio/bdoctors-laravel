@@ -38,22 +38,6 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    // public function authenticate(): void
-    // {
-    //     $this->ensureIsNotRateLimited();
-
-    //     if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-    //         RateLimiter::hit($this->throttleKey());
-
-    //         throw ValidationException::withMessages([
-
-    //             'email' => trans('auth.failed'),
-    //             //'password' => trans('auth.password'),
-    //         ]);
-    //     }
-
-    //     RateLimiter::clear($this->throttleKey());
-    // }
 
     public function authenticate(): void
     {
