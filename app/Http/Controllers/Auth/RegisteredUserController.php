@@ -52,6 +52,7 @@ class RegisteredUserController extends Controller
             'description.max' => 'La descrizione non può essere più lunga di 500 caratteri.',
             'email.required' => "L'email è obbligatoria.",
             'email.email' => "L'email deve essere valida.",
+            'email.unique' => "Esiste già un account registrato con questa email.",
             'email.max' => "L'email non può essere più lunga di 500 caratteri.",
             'password.required' => "La password è obbligatoria."
         ]);
