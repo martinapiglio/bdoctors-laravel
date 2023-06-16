@@ -47,7 +47,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('sponsorships', SponsorshipController::class)->parameters(['sponsorships'=>'sponsorship:slug']);
     //checkout route
     Route::get('/braintree/token', [SponsorshipController::class, 'getClientToken']);
-    Route::post('/purchase', [SponsorshipController::class, 'purchase']);
 
 });
 
