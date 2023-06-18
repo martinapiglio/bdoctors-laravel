@@ -8,6 +8,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -43,33 +45,18 @@ class SponsorshipController extends Controller
      */
     public function store(Request $request, Sponsorship $sponsorship)
     {
-        // PROVA PER PASSARE O SLUG DALLA VIEW SPONSORSHIP/SHOW()
+        //retrieve the sponsorships slug
+        $fullUrl = URL::full();
+        $parsed_url = parse_url($fullUrl);
+        parse_str($parsed_url['query'], $query_params);
+        $param_keys = array_keys($query_params);
 
-        // A MANO
-        // $slug = 'basic';
-        // $sponsorship = Sponsorship::where('slug', '=', $slug)->first();
-
-        //REQUEST 1
-        //$slug = $request->segment(count($request->segments()));
-        //$slug = Request::segment(count(Request::segments()));
-
-        //REQUEST 2
-        // $segments = Request::segments();
-        // $slug = end($segments);
-
-        // if (empty($slug)) {
-        //     $slug = prev($segments);
-        // }
-
-        //REQUEST 3
-        // $slug = Request::segment(count(Request::segments()), null);
-        // if (is_null($slug)) {
-        //     $slug = Request::segment(count(Request::segments()) - 1);
-        // }
+        $slug = $param_keys[0];
 
         $detail = Detail::where('user_id', Auth::id())->first();
+        $sponsorship = Sponsorship::where('slug', '=', $slug)->first();
 
-         // Handle the situation if no sponsorship is found.
+        // Handle the situation if no sponsorship is found.
         // if (!$sponsorship) {
         //     return response()->json(['message' => 'Sponsorship not found']);
         // }
@@ -79,11 +66,10 @@ class SponsorshipController extends Controller
     
         // Generate a client token
         $gateway = app('Braintree\Gateway');
-        // $clientToken = $gateway->clientToken()->generate();
     
         // Use the client token and nonce to create a transaction
         $result = $gateway->transaction()->sale([
-        'amount' => '10', // SCRIVI $sponsorship->price, 
+        'amount' => $sponsorship->price, 
         'paymentMethodNonce' => $nonceFromTheClient,
         'options' => [ 'submitForSettlement' => true ]
             ]);
@@ -93,12 +79,20 @@ class SponsorshipController extends Controller
         
             $transaction = $result->transaction;
 
-            // Insert data into the bridge table - da fare quando si avrà lo slug da sponsorship
-            // DB::table('detail_sponsorship')->insert([
-            //     'detail_id' => $detail->id,
-            //     'sponsorship_id' => $sponsorship->id,
-            //     'end_date' => Carbon::now(),
-            // ]);
+            //Insert data into the bridge table - da fare quando si avrà lo slug da sponsorship
+            DB::table('detail_sponsorship')->insert([
+                'detail_id' => $detail->id,
+                'sponsorship_id' => $sponsorship->id,
+                'end_date' => Carbon::now(),
+                'transactionid' => $transaction->id,
+            ]);
+
+            $startDate = DB::table('detail_sponsorship')->where('transactionid', $transaction->id)->value('start_date');
+            // dd($startDate);
+
+            DB::table('detail_sponsorship')
+                ->where('transactionid', $transaction->id)
+                ->update(['end_date' => \Carbon\Carbon::parse($startDate)->addHours($sponsorship->duration)]);
 
             return redirect()->route('admin.sponsorships.index');
         
