@@ -47,14 +47,6 @@ class UserController extends Controller
                 ->with('detail.specs')
                 ->get();
 
-
-
-
-
-
-
-
-
             if (count($users) == 0) {
 
                 return response()->json([
