@@ -32,10 +32,28 @@ class UserController extends Controller
 
         // I check if there is a parameter type_id in the request and that is 	not null
         if ($request->has('mainspec') && $requestData['mainspec'] != "") {
-            $users = User::where('mainspec', $requestData['mainspec'])
-                ->with('detail.specs')->get();
+            ////->with('detail.specs')->get();
             // ->orderBy('projects.created_at', 'desc')
             // ->paginate(2);
+            // $users = User::where('mainspec', $requestData['mainspec'])
+            //     ->with(['detail.specs' => function ($query) use ($requestData) {
+            //         $query->where('spec_id', $requestData['mainspec']);
+            //     }])
+            //     ->get();
+            $users = User::where('mainspec', $requestData['mainspec'])
+                ->orWhereHas('detail.specs', function ($query) use ($requestData) {
+                    $query->where('specs.title', $requestData['mainspec']);
+                })
+                ->with('detail.specs')
+                ->get();
+
+
+
+
+
+
+
+
 
             if (count($users) == 0) {
 
