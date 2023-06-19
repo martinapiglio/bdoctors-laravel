@@ -30,44 +30,37 @@ class UserController extends Controller
         // $votes = Vote::all();
         
         // I check if there is a parameter type_id in the request and that is 	not null
-        // if ($request->has('type_id') && $requestData['type_id']) {
-            //     $projects = Project::where('type_id', $requestData['type_id'])
-            // 	    ->with('type', 'technologies')
-            //         ->orderBy('projects.created_at', 'desc')
-            //         ->paginate(2);
-            
+        if ($request->has('mainspec') && $requestData['mainspec'] != "") {
+                $users = User::where('mainspec', $requestData['mainspec'])
+            	    ->with('detail.specs');
+                    // ->orderBy('projects.created_at', 'desc')
+                    // ->paginate(2);
+
             if (count($users) == 0) {
                 
                 return response()->json([
                     'success' => false,
                     'error' => 'No users found',
                 ]);
+            }
                 
-            } else {
-                // here we are using the with method to eager load the type of the project 	 and the technologies of the project
-                // and then we are ordering them by the date of creation of the project
-                $users = DB::table('users')
-                    ->leftJoin('details', 'users.slug', '=', 'details.slug')
-                    ->leftJoin('detail_spec', 'details.id', '=', 'detail_spec.detail_id')
-                    ->leftJoin('specs', 'specs.id', '=', 'detail_spec.spec_id' )
-                    ->select('users.*', 'details.*', 'specs.*')
-                    ->get();
+        } else {
                 
-            // $users = User::with('detail')->get();
+            $users = User::with('detail.specs')->get();
             // with('details', 'specs', 'sponsorships', 'messages', 'reviews', 'votes')->get();
                 // ->orderBy('projects.created_at', 'desc')
                 // ->paginate(2);
         };
 
         return response()->json([
-        'success' => true,
-        'results' => $users,
-        // 'details' => $details,
-        'specs' => $specs,
-        // 'sponsorships' => $sponsorships,
-        // 'messages' => $messages,
-        // 'reviews' => $reviews,
-        // 'votes' => $votes
+            'success' => true,
+            'results' => $users,
+            // 'details' => $details,
+            'specs' => $specs,
+            // 'sponsorships' => $sponsorships,
+            // 'messages' => $messages,
+            // 'reviews' => $reviews,
+            // 'votes' => $votes
         ]);
 
 	}

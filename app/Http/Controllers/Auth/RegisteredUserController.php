@@ -50,6 +50,7 @@ class RegisteredUserController extends Controller
             'address.max' => "L'indirizzo non può essere più lungo di 100 caratteri.",
             'description.required' => 'La descrizione è obbligatoria.',
             'description.max' => 'La descrizione non può essere più lunga di 500 caratteri.',
+            'mainspec.required' => 'La specializzazione principale è obbligatoria.',
             'email.required' => "L'email è obbligatoria.",
             'email.email' => "L'email deve essere valida.",
             'email.unique' => "Esiste già un account registrato con questa email.",
