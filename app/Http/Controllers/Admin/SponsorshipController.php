@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Detail;
 use App\Models\Sponsorship;
@@ -47,6 +48,7 @@ class SponsorshipController extends Controller
     {
         //retrieve the sponsorships slug
         $fullUrl = URL::full();
+        // ?basic=
         $parsed_url = parse_url($fullUrl);
         parse_str($parsed_url['query'], $query_params);
         $param_keys = array_keys($query_params);
@@ -63,20 +65,20 @@ class SponsorshipController extends Controller
 
         // Get the payment method nonce from the request
         $nonceFromTheClient = 'fake-valid-nonce';
-    
+
         // Generate a client token
         $gateway = app('Braintree\Gateway');
-    
+
         // Use the client token and nonce to create a transaction
         $result = $gateway->transaction()->sale([
-        'amount' => $sponsorship->price, 
-        'paymentMethodNonce' => $nonceFromTheClient,
-        'options' => [ 'submitForSettlement' => true ]
-            ]);
-    
+            'amount' => $sponsorship->price,
+            'paymentMethodNonce' => $nonceFromTheClient,
+            'options' => ['submitForSettlement' => true]
+        ]);
+
         // Handle the result of the transaction
         if ($result->success) {
-        
+
             $transaction = $result->transaction;
 
             //Insert data into the bridge table - da fare quando si avrà lo slug da sponsorship
@@ -95,17 +97,16 @@ class SponsorshipController extends Controller
                 ->update(['end_date' => \Carbon\Carbon::parse($startDate)->addHours($sponsorship->duration)]);
 
             return redirect()->route('admin.sponsorships.index');
-        
         } else {
             // Transaction failed
             $errorString = "";
-            foreach($result->errors->deepAll() as $error) {
+            foreach ($result->errors->deepAll() as $error) {
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
             }
             return response()->json(['message' => 'Transaction failed', 'errors' => $errorString]);
         }
     }
-        
+
     /**
      * Display the specified resource.
      *
