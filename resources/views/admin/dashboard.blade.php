@@ -13,12 +13,11 @@
         <a href="{{route('admin.details.show', $detail->slug)}}">mostra i dati del tuo profilo</a><br>
         <a href="{{route('admin.details.edit', $detail->slug)}}">modifica i dati del tuo profilo</a><br>
     </div>
-    @endif
-
+    
     <div>
         <a href="{{route('admin.sponsorships.index')}}">Vai alle sponsorizzazioni</a>
     </div>
-
+    @endif
 </div>
 
 @endsection
