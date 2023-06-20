@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Vote;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class VoteSeeder extends Seeder
 {
@@ -12,8 +14,18 @@ class VoteSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        //
+        for($i = 0; $i < 50; $i++){
+
+            $vote = new Vote();
+
+            $vote->user_id = random_int(2, 6);
+            $vote->voter = $faker->name();
+            $vote->vote = random_int(1, 10);
+
+            $vote->save();
+
+        }
     }
 }

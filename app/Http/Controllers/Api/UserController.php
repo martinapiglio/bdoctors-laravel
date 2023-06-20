@@ -24,8 +24,8 @@ class UserController extends Controller
         $specs = Spec::all();
         // $sponsorships = Sponsorship::all();
         // $messages = Message::all();
-        // $reviews = Review::all();
-        // $votes = Vote::all();
+        $reviews = Review::all();
+        $votes = Vote::all();
 
         // I check if there is a parameter type_id in the request and that is not null
         if ($request->has('mainspec') && $requestData['mainspec'] != "") {
@@ -54,7 +54,7 @@ class UserController extends Controller
 
         } else {
 
-            $users = User::with('detail.specs')->get();
+            $users = User::with('detail.specs', 'reviews', 'votes')->get();
             // with('details', 'specs', 'sponsorships', 'messages', 'reviews', 'votes')->get();
             // ->orderBy('projects.created_at', 'desc')
             // ->paginate(2);
@@ -67,8 +67,8 @@ class UserController extends Controller
             'specs' => $specs,
             // 'sponsorships' => $sponsorships,
             // 'messages' => $messages,
-            // 'reviews' => $reviews,
-            // 'votes' => $votes
+            'reviews' => $reviews,
+            'votes' => $votes
         ]);
     }
 }

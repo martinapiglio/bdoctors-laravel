@@ -3,6 +3,10 @@
 @section('content')
 <div class="container py-5">
 
+    <h3 class="mb-5">
+        Modifica i dettagli del tuo profilo
+    </h3>
+
     <form action=" {{ route('admin.details.update', $detail->slug) }} " method="POST" enctype="multipart/form-data" id="form">
         @csrf 
         @method('PUT')

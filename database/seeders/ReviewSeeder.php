@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Review;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class ReviewSeeder extends Seeder
 {
@@ -12,8 +14,18 @@ class ReviewSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        //
+        for($i = 0; $i < 50; $i++){
+
+            $review = new Review();
+
+            $review->user_id = random_int(2, 6);
+            $review->name = $faker->name();
+            $review->description = $faker->text(200);
+
+            $review->save();
+
+        }
     }
 }

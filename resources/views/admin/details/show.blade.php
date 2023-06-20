@@ -15,7 +15,7 @@
         <br>
 
         <div class="my-4">
-            <a href="{{ asset('storage/'. $detail->curriculum) }}" target="_blank" class="btn btn-primary">View CV</a> 
+            <a href="{{ asset('storage/'. $detail->curriculum) }}" target="_blank" class="btn btn-primary">Mostra CV</a> 
             <a href="{{ asset('storage/'. $detail->curriculum) }}" download="{{ $detail->slug . '-cv'}}" class="btn btn-primary">Download CV</a>
         </div>
 
@@ -53,21 +53,21 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cancella dati</h1>
                 </div>
 
                 <div class="modal-body">
-                    Do you want to delete the selected project? Please consider that this action is irreversible.
+                    Sei sicuro di voler cancellare questi dati? Se procedi, l'azione sarà irreversibile.
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
                 
                     <form action="{{route('admin.details.destroy', $detail->slug)}}" method="POST">
                         @csrf
                         @method('DELETE')
                 
-                        <button class="btn btn-danger" type="submit">Delete</button>
+                        <button class="btn btn-danger" type="submit">Cancella</button>
                     </form>
 
                 </div>
