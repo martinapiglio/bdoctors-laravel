@@ -92,7 +92,7 @@
 
                             @foreach($specs as $spec)
                                 <div class="form-check">
-                                    <input type="radio" id="spec-{{$spec->id}}" name="mainspec" value="{{$spec->title}}">
+                                    <input type="radio" id="spec-{{$spec->id}}" name="mainspec" value="{{$spec->title}}" required>
                                     <label for="spec-{{$spec->id}}">{{$spec->title}}</label>
                                 </div>
                             @endforeach

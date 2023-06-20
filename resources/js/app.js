@@ -24,7 +24,6 @@ if(phoneNumber) {
     phoneNumber.oninput = checkPhoneNoChar;
 }
 
-
 // at least one spec must be selected - validation
 let form = document.querySelector('#form');
 let checkboxes;
