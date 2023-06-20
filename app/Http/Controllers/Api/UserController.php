@@ -27,7 +27,7 @@ class UserController extends Controller
         $reviews = Review::all();
         $votes = Vote::all();
 
-        // I check if there is a parameter type_id in the request and that is not null
+        // I check if there is a parameter mainspec in the request and that is not null
         if ($request->has('mainspec') && $requestData['mainspec'] != "") {
             ////->with('detail.specs')->get();
             // ->orderBy('projects.created_at', 'desc')
@@ -41,8 +41,35 @@ class UserController extends Controller
                 ->orWhereHas('detail.specs', function ($query) use ($requestData) {
                     $query->where('specs.title', $requestData['mainspec']);
                 })
-                ->with('detail.specs')
+                ->with('detail.specs','reviews', 'votes')
                 ->get();
+
+                if ($request->has('vote') && $requestData['vote'] != "") {
+                    ////->with('detail.specs')->get();
+                    // ->orderBy('projects.created_at', 'desc')
+                    // ->paginate(2);
+                    // $users = User::where('mainspec', $requestData['mainspec'])
+                    //     ->with(['detail.specs' => function ($query) use ($requestData) {
+                    //         $query->where('spec_id', $requestData['mainspec']);
+                    //     }])
+                    //     ->get();
+                    $users = User::where('vote', '>=', $requestData['vote'])
+                        // ->orWhereHas('detail.specs', function ($query) use ($requestData) {
+                        //     $query->where('specs.title', $requestData['mainspec']);
+                        // })
+                        ->with('detail.specs','reviews', 'votes')
+                        ->get();
+        
+                    if (count($users) == 0) {
+        
+                        return response()->json([
+                            'success' => false,
+                            'error' => 'No users found',
+                        ]);
+                    }
+        
+                };
+
 
             if (count($users) == 0) {
 
@@ -71,4 +98,12 @@ class UserController extends Controller
             'votes' => $votes
         ]);
     }
+
+    public function filter(Request $request) {
+
+        $requestData = $request->all();
+
+        
+    }
+
 }
