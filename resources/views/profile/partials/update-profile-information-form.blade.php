@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-secondary">
-            {{ __('Profile Information') }}
+            {{ __('Informazioni di profilo') }}
         </h2>
 
         <p class="mt-1 text-muted">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Modifica le tue informazioni di profilo e l'indirizzo email.") }}
         </p>
     </header>
 
@@ -18,7 +18,7 @@
         @method('patch')
 
         <div class="mb-2">
-            <label for="name">Nome</label>
+            <label for="name">Nome *</label>
             <input class="form-control" type="text" name="name" id="name" autocomplete="name" value="{{old('name', $user->name)}}" required autofocus>
             @error('name')
             <span class="invalid-feedback" role="alert">
@@ -28,8 +28,18 @@
         </div>
 
         <div class="mb-2">
+            <label for="surname">Cognome *</label>
+            <input class="form-control" type="text" name="surname" id="surname" autocomplete="surname" value="{{old('surname', $user->surname)}}" required autofocus>
+            @error('surname')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->get('name')}}</strong>
+            </span>
+            @enderror
+        </div>
+
+        <div class="mb-2">
             <label for="email">
-                {{__('Email') }}
+                {{__('Email *') }}
             </label>
 
             <input id="email" name="email" type="email" class="form-control" value="{{ old('email', $user->email)}}" required autocomplete="username" />
@@ -61,7 +71,7 @@
 
         {{-- address --}}
         <div class="mb-2">
-            <label for="address">{{__('Address')}}</label>
+            <label for="address">{{__('Indirizzo *')}}</label>
             <input class="form-control" type="text" name="address" id="address" autocomplete="address" value="{{old('address', $user->address)}}" required autofocus>
             @error('address')
             <span class="invalid-feedback" role="alert">
@@ -101,8 +111,10 @@
 
         </div>
 
+        <div class="text-center mb-4">I campi contrassegnati con * sono obbligatori.</div>
+
         <div class="d-flex align-items-center gap-4">
-            <button class="btn btn-primary" type="submit">{{ __('Save') }}</button>
+            <button class="btn btn-primary" type="submit">{{ __('Salva') }}</button>
 
             @if (session('status') === 'profile-updated')
             <script>
@@ -113,7 +125,7 @@
                     el.style.display = 'block';
                 }
             </script>
-            <p id='profile-status' class="fs-5 text-muted">{{ __('Saved.') }}</p>
+            <p id='profile-status' class="fs-5 text-muted">{{ __('Modifiche salvate.') }}</p>
             @endif
         </div>
     </form>

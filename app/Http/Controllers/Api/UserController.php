@@ -17,26 +17,24 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        // return all the Projects in the database
-        // $projects = Project::all();
         $requestData = $request->all();
 
-        $users = User::all();
+        // $users = User::all();
         // $details = Detail::all();
         $specs = Spec::all();
-
         // $sponsorships = Sponsorship::all();
         // $messages = Message::all();
         // $reviews = Review::all();
         // $votes = Vote::all();
 
-        // I check if there is a parameter type_id in the request and that is 	not null
+        // I check if there is a parameter type_id in the request and that is not null
         if ($request->has('mainspec') && $requestData['mainspec'] != "") {
-            $users = User::where('mainspec', $requestData['mainspec'])
-                ->with('detail.specs')->get();
-            // ->orderBy('projects.created_at', 'desc')
-            // ->paginate(2);
 
+            $users = User::where('mainspec', $requestData['mainspec'])
+                ->orWhereRaw('detail.specs = ?', [$requestData['mainspec']])
+                ->with('detail.specs')
+                ->get();
+              
             if (count($users) == 0) {
 
                 return response()->json([
@@ -44,6 +42,7 @@ class UserController extends Controller
                     'error' => 'No users found',
                 ]);
             }
+
         } else {
 
             $users = User::with('detail.specs')->get();
