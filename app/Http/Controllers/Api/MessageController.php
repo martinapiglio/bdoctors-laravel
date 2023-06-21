@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
@@ -35,9 +36,20 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message = new Message();
+
+        $message->user_id = $request->userId;
+        $message->name = $request->name;
+        $message->email = $request->email;
+        $message->subject = $request->subject;
+        $message->message = $request->message;
+        
+        $message->save();
+
+        return response()->json(['success' => true]);
     }
 
+    
     /**
      * Display the specified resource.
      *

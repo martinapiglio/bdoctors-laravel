@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -35,7 +37,15 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $review = new Review();
+
+        $review->user_id = $request->userId;
+        $review->name = $request->name;
+        $review->description = $request->description;
+        
+        $review->save();
+
+        return response()->json(['success' => true]);
     }
 
     /**
