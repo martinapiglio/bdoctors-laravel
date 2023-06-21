@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             // DetailSeeder::class,
             SpecSeeder::class,
             SponsorshipSeeder::class,
+            VoteSeeder::class,
+            ReviewSeeder::class,
         ]);
-
     }
 }
