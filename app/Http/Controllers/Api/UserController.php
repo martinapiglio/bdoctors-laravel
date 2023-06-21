@@ -96,10 +96,12 @@ class UserController extends Controller
 
         // if mainspec is present, add it to the query
         if ($request->has('mainspec') && $requestData['mainspec'] != "") {
-            $query->where('mainspec', $requestData['mainspec'])
-                ->orWhereHas('detail.specs', function ($query) use ($requestData) {
-                    $query->where('specs.title', $requestData['mainspec']);
-                });
+            $query->where(function ($query) use ($requestData) {
+                $query->where('mainspec', $requestData['mainspec'])
+                    ->orWhereHas('detail.specs', function ($query) use ($requestData) {
+                        $query->where('specs.title', $requestData['mainspec']);
+                    });
+            });
         }
         if ($request->has('vote') && $requestData['vote'] != "") {
             $query->whereHas('votes', function ($query) use ($requestData) {
