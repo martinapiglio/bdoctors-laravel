@@ -65,4 +65,25 @@ class UserController extends Controller
             'votes' => $votes
         ]);
     }
+    public function show($slug)
+    {
+        // we are using the where method to find the user with the slug parameter in the database
+        $user = User::where('slug', $slug)->with('detail.specs', 'reviews', 'votes')->first();
+        // the same as doing:
+        // 'SELECT * FROM users WHERE slug = $slug'
+
+        if ($user) {
+            // we return the user in json format with the success message
+            return response()->json([
+                'success' => true,
+                'user' => $user,
+            ]);
+        } else {
+            // if the user is not found we return an error message in json format with the success message set to false
+            return response()->json([
+                'success' => false,
+                'error' => 'The user does not exist',
+            ]);
+        }
+    }
 }
