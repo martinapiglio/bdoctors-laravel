@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DetailController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SponsorshipController;
+use App\Http\Controllers\Admin\VoteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +50,12 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('sponsorships', SponsorshipController::class)->parameters(['sponsorships'=>'sponsorship:slug']);
     //checkout route
     Route::get('/braintree/token', [SponsorshipController::class, 'getClientToken']);
+    //messages route
+    Route::resource('messages', MessageController::class)->parameters(['messages'=>'message:subject']);
+    //reviews route
+    Route::resource('reviews', ReviewController::class)->parameters(['reviews'=>'review:id']);
+    //votes route
+    Route::resource('votes', VoteController::class);
 
 });
 

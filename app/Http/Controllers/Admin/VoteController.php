@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Models\Message;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
+use App\Models\Vote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class MessageController extends Controller
+class VoteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,13 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::id();
+
+        $votes = Vote::where('user_id', $user_id)->get();
+
+        // dd($votes);
+
+        return view('admin.votes.index', compact('votes'));
     }
 
     /**
@@ -41,21 +48,21 @@ class MessageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Message  $message
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show()
     {
-        //
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Message  $message
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Message $message)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +71,10 @@ class MessageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Message  $message
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Message $message)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +82,10 @@ class MessageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Message  $message
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy($id)
     {
         //
     }

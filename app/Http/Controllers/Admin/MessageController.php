@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Models\Vote;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
+use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class VoteController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,10 @@ class VoteController extends Controller
      */
     public function index()
     {
-        //
+
+        $messages = Message::where('user_id', Auth::id())->get();
+
+        return view('admin.messages.index', compact('messages'));
     }
 
     /**
@@ -41,21 +45,31 @@ class VoteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Vote  $vote
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Vote $vote)
+    public function show(Message $message)
     {
-        //
+        // $message = Message::where('user_id', Auth::id())->get();
+
+        // return view('admin.messages.show', compact('message'));
+
+        if ($message->user_id == Auth::id()) {
+            return view('admin.messages.show', compact('message'));
+        } else {
+            // if the project belongs to a different user we redirect to the index page
+            return redirect()->route('admin.messages.index');
+        };
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Vote  $vote
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vote $vote)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +78,10 @@ class VoteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Vote  $vote
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vote $vote)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +89,10 @@ class VoteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vote  $vote
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vote $vote)
+    public function destroy($id)
     {
         //
     }

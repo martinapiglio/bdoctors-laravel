@@ -22,6 +22,7 @@ class UserController extends Controller
         $specs = Spec::all();
         $reviews = Review::all();
         $votes = Vote::all();
+        $sponsorships = Sponsorship::all();
 
         // start the query
         $query = User::query();
@@ -46,7 +47,7 @@ class UserController extends Controller
         }
 
         // get the results with the necessary relationships
-        $users = $query->with('detail.specs', 'reviews', 'votes')->get();
+        $users = $query->with('detail.specs', 'reviews', 'votes', 'detail.sponsorships')->get();
 
         // if no users were found, return an error message
         if (count($users) == 0) {
@@ -62,13 +63,14 @@ class UserController extends Controller
             'results' => $users,
             'specs' => $specs,
             'reviews' => $reviews,
-            'votes' => $votes
+            'votes' => $votes,
+            'sponsorships' => $sponsorships,
         ]);
     }
     public function show($slug)
     {
         // we are using the where method to find the user with the slug parameter in the database
-        $user = User::where('slug', $slug)->with('detail.specs', 'reviews', 'votes')->first();
+        $user = User::where('slug', $slug)->with('detail.specs', 'reviews', 'votes', 'detail.sponsorships')->first();
         // the same as doing:
         // 'SELECT * FROM users WHERE slug = $slug'
 
