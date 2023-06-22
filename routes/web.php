@@ -50,6 +50,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/braintree/token', [SponsorshipController::class, 'getClientToken']);
     //messages route
     Route::resource('messages', MessageController::class)->parameters(['messages'=>'message:subject']);
+    //reviews route
+    Route::resource('reviews', ReviewController::class)->parameters(['reviews'=>'review:id']);
+    //votes route
+    Route::resource('votes', VoteController::class);
 
 });
 
