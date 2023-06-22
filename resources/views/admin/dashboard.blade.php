@@ -13,8 +13,8 @@
         <a href="{{route('admin.details.show', $detail->slug)}}">mostra i dati del tuo profilo</a><br>
         <a href="{{route('admin.details.edit', $detail->slug)}}">modifica i dati del tuo profilo</a><br>
         <a href="{{route('admin.messages.index', $detail->slug)}}">Vedi i tuoi messaggi</a><br>
-        {{-- <a href="{{route('admin.reviews.index', $detail->slug)}}">vedi le tue recensioni</a><br>
-        <a href="{{route('admin.votes.index', $detail->slug)}}">vedi i tuoi voti</a><br> --}}
+        <a href="{{route('admin.reviews.index', $detail->slug)}}">vedi le tue recensioni</a><br>
+        <a href="{{route('admin.votes.index', $detail->slug)}}">vedi i tuoi voti</a><br>
     </div>
     
     <div>

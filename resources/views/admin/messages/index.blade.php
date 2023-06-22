@@ -4,6 +4,8 @@
 <div class="container py-5">
     <h3 class="mb-4">Messaggi</h3>
 
+    @if(count($messages) > 0)
+
     <table class="table">
         <thead>
           <tr>
@@ -24,6 +26,10 @@
             @endforeach
         </tbody>
       </table>
+
+    @else
+    <div>non hai messaggi</div>
+    @endif
 
 
 </div>

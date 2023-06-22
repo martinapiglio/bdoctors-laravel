@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
+use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class VoteController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,9 @@ class VoteController extends Controller
      */
     public function index()
     {
-        //
+        $reviews = Review::where('user_id', Auth::id())->get();
+
+        return view('admin.reviews.index', compact('reviews'));
     }
 
     /**
@@ -43,9 +47,14 @@ class VoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Review $review)
     {
-        //
+        if ($review->user_id == Auth::id()) {
+            return view('admin.reviews.show', compact('review'));
+        } else {
+            // if the project belongs to a different user we redirect to the index page
+            return redirect()->route('admin.reviews.index');
+        };
     }
 
     /**
