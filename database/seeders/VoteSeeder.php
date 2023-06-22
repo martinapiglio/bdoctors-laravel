@@ -22,7 +22,7 @@ class VoteSeeder extends Seeder
 
             $vote->user_id = random_int(2, 6);
             $vote->voter = $faker->name();
-            $vote->vote = random_int(1, 10);
+            $vote->vote = random_int(1, 5);
 
             $vote->save();
 

@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\Vote;
 use Illuminate\Http\Request;
@@ -35,7 +37,15 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vote = new Vote();
+
+        $vote->user_id = $request->userId;
+        $vote->voter = $request->voter;
+        $vote->vote = $request->vote;
+        
+        $vote->save();
+
+        return response()->json(['success' => true]);
     }
 
     /**

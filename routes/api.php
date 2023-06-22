@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\VoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,5 @@ Route::get('/users/{slug}', [UserController::class, 'show']);
 Route::post('/messages', [MessageController::class, 'store']);
 // store reviews from vue input
 Route::post('/reviews', [ReviewController::class, 'store']);
+// store reviews from vue input
+Route::post('/votes', [VoteController::class, 'store']);
