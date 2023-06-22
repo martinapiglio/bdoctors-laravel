@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
 {
@@ -37,6 +38,7 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validation($request);
         $review = new Review();
 
         $review->user_id = $request->userId;
@@ -91,5 +93,24 @@ class ReviewController extends Controller
     public function destroy(Review $review)
     {
         //
+    }
+
+    private function validation($request) {
+
+        $formData = $request->all(); 
+
+        $validator = Validator::make($formData, [
+            'name' => 'min:3|max:50',
+            'description' => 'required|min:3|max:500',            
+        ], [            
+            'name.min' => "Il nome deve essere di almeno 3 caratteri.",
+            'name.max' => "Il nome non può essere più lungo di 50 caratteri.",
+            'description.required' => "La recensione è obbligatoria",
+            'description.min' => "La recensione deve essere di almeno 3 caratteri",
+            'description.max' => "La recensione non può essere più lunga di 50 caratteri.",           
+
+        ])->validate();
+
+        return $validator;
     }
 }

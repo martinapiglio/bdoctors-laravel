@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Vote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class VoteController extends Controller
 {
@@ -37,6 +38,8 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validation($request);
+
         $vote = new Vote();
 
         $vote->user_id = $request->userId;
@@ -91,5 +94,21 @@ class VoteController extends Controller
     public function destroy(Vote $vote)
     {
         //
+    }
+    private function validation($request) {
+
+        $formData = $request->all(); 
+
+        $validator = Validator::make($formData, [
+            'voter' => 'min:3|max:50',
+            'vote' => 'required',
+        ], [
+            'voter.min' => "Il nome deve essere di almeno 3 caratteri.",
+            'voter.max' => "Il nome non può essere più lungo di 50 caratteri.",
+            'vote.required' => "Il voto è obbligatorio.",
+
+        ])->validate();
+
+        return $validator;
     }
 }
