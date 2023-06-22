@@ -11,6 +11,6 @@ class Sponsorship extends Model
     
     public function details()
     {
-        return $this->belongsToMany(Detail::class);
+        return $this->belongsToMany(Detail::class)->withPivot('start_date', 'end_date');
     }
 }
