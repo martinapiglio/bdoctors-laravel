@@ -96,7 +96,7 @@ class SponsorshipController extends Controller
                 ->where('transactionid', $transaction->id)
                 ->update(['end_date' => \Carbon\Carbon::parse($startDate)->addHours($sponsorship->duration)]);
 
-            return redirect()->route('admin.sponsorships.index');
+            return view('admin.sponsorships.payment');
         } else {
             // Transaction failed
             $errorString = "";
@@ -150,7 +150,6 @@ class SponsorshipController extends Controller
      */
     public function update(Request $request, Sponsorship $sponsorship)
     {
-        //
     }
 
     /**
@@ -162,5 +161,9 @@ class SponsorshipController extends Controller
     public function destroy(Sponsorship $sponsorship)
     {
         //
+    }
+    public function payment()
+    {
+        return view('admin.sponsorships.payment');
     }
 }

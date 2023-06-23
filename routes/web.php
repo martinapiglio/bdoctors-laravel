@@ -41,22 +41,23 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function(){
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     //dashboard route
     Route::get('/', [DashboardController::class, 'home'])->name('dashboard');
     //details route
-    Route::resource('details', DetailController::class)->parameters(['details'=>'detail:slug']);
+    Route::resource('details', DetailController::class)->parameters(['details' => 'detail:slug']);
     //sponsorships route
-    Route::resource('sponsorships', SponsorshipController::class)->parameters(['sponsorships'=>'sponsorship:slug']);
+    Route::resource('sponsorships', SponsorshipController::class)->parameters(['sponsorships' => 'sponsorship:slug']);
     //checkout route
     Route::get('/braintree/token', [SponsorshipController::class, 'getClientToken']);
     //messages route
-    Route::resource('messages', MessageController::class)->parameters(['messages'=>'message:subject']);
+    Route::resource('messages', MessageController::class)->parameters(['messages' => 'message:subject']);
     //reviews route
-    Route::resource('reviews', ReviewController::class)->parameters(['reviews'=>'review:id']);
+    Route::resource('reviews', ReviewController::class)->parameters(['reviews' => 'review:id']);
     //votes route
     Route::resource('votes', VoteController::class);
-
+    //Payment outcome
+    Route::get('payment', [SponsorshipController::class, 'payment'])->name('admin.sponsorships.payment');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
