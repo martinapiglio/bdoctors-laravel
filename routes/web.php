@@ -56,8 +56,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('reviews', ReviewController::class)->parameters(['reviews' => 'review:id']);
     //votes route
     Route::resource('votes', VoteController::class);
-    //Payment outcome
-    Route::get('payment', [SponsorshipController::class, 'payment'])->name('admin.sponsorships.payment');
 });
 
 require __DIR__ . '/auth.php';

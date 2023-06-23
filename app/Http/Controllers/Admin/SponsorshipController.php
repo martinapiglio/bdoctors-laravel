@@ -103,7 +103,8 @@ class SponsorshipController extends Controller
             foreach ($result->errors->deepAll() as $error) {
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
             }
-            return response()->json(['message' => 'Transaction failed', 'errors' => $errorString]);
+            return view('admin.sponsorships.payment-failed')
+                ->with('data', ['message' => 'Transaction failed', 'errors' => $errorString]);
         }
     }
 
@@ -162,8 +163,9 @@ class SponsorshipController extends Controller
     {
         //
     }
-    public function payment()
-    {
-        return view('admin.sponsorships.payment');
-    }
+    //     public function payment()
+    //     {
+    //         dd('payment function');
+    //         return view('admin.sponsorships.payment');
+    //     }
 }
