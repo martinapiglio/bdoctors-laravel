@@ -1,5 +1,12 @@
 @import "~bootstrap/scss/bootstrap";
 // @import "node_modules/font-awesome/scss/font-awesome.scss";
+.logo-cont{
+    height: 80px;
+    img{
+        height: 100%;
+        width: 100%;
+    }
+}
 
 a {
     color: inherit;
@@ -9,4 +16,19 @@ a {
 .__img-anonimo {
     height: 200px;
     width: 200px;
+}
+
+.benvenuto {
+    width: 100%;
+    height: calc(100vh - 88px);
+    color: white;
+    background-color: rgb(41, 59, 99);
+    .bd-cont {
+        // font-weight: bold;
+        font-size: 100px;
+        padding-left: 7%;
+    }
+    .altro-cnt {
+        font-size: 55px;
+    }
 }
