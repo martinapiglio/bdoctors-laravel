@@ -98,6 +98,22 @@ class DetailController extends Controller
     {
         $detail = Detail::where('user_id', Auth::id())->first();
         //dd($detail);
+        // Grafico 1
+        $maxValueVote = 0;
+        $userVotes = [];
+        for ($i = 1; $i <= 5; $i++) {
+            $userVotes[$i] = DB::table('votes')
+                ->where([
+                    ['user_id', '=', Auth::id()],
+                    ['vote', '=', $i]
+                ])
+                ->count();
+            if ($userVotes[$i] > $maxValueVote) {
+                $maxValueVote = $userVotes[$i];
+            }
+        }
+        $maxValueVote += 2;
+
         $chartN1 = new TotalVotes;
         $chartN1->labels(['1', '2', '3', '4', '5'])
             ->title('Grafico Voti Totali per Numero Voti')
@@ -111,7 +127,7 @@ class DetailController extends Controller
                                 'labelString' => 'Numero Voti'
                             ],
                             'ticks' => [
-                                'max' => 8,
+                                'max' => $maxValueVote,
                                 'beginAtZero' => true,
                                 'stepSize' => 1,
                                 'precision' => 0
@@ -129,25 +145,34 @@ class DetailController extends Controller
                 ],
             ]);
 
-        $userVotes = [];
-        for ($i = 1; $i <= 5; $i++) {
-            $userVotes[$i] = DB::table('votes')
-                ->where([
-                    ['user_id', '=', Auth::id()],
-                    ['vote', '=', $i]
-                ])
-                ->count();
-        }
+
+
         $chartN1->dataset('Voti', 'bar', array_values($userVotes));
 
         // Grafico n'2
         $chartN2 = new VoteMonth;
         $labels = [];
+        $data = [];
+        $maxValuePerMonth = 0;
 
         for ($month = 1; $month <= 12; $month++) {
             $monthName = date('F', mktime(0, 0, 0, $month, 1));
+            $yearMonth = date('Y-m', mktime(0, 0, 0, $month, 1));
             $labels[] = $monthName;
+
+            $voteCount = DB::table('votes')
+                ->where([
+                    ['user_id', '=', Auth::id()],
+                    [DB::raw("DATE_FORMAT(created_at, '%Y-%m')"), '=', $yearMonth]
+                ])
+                ->count();
+
+            $data[] = $voteCount;
+            if ($voteCount > $maxValuePerMonth) {
+                $maxValuePerMonth = $voteCount;
+            }
         }
+        $maxValuePerMonth += 2;
 
         $chartN2->labels($labels);
         $chartN2->title('Grafico Voti Totali per Mese')
@@ -161,7 +186,7 @@ class DetailController extends Controller
                                 'labelString' => 'Numero Voti'
                             ],
                             'ticks' => [
-                                'max' => 8,
+                                'max' => $maxValuePerMonth,
                                 'beginAtZero' => true,
                                 'stepSize' => 1,
                                 'precision' => 0
@@ -179,21 +204,8 @@ class DetailController extends Controller
                 ],
             ]);
 
-        $votesByMonth = DB::table('votes')
-            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as vote_count'))
-            ->where('user_id', Auth::id())
-            ->groupBy(DB::raw('MONTH(created_at)'))
-            ->get();
-        //dd($votesByMonth);
-        $voteCount = '';
-        foreach ($votesByMonth as $vote) {
-            $month = $vote->month;
-            $voteCount = $vote->vote_count;
-
-            // Process the month and vote count as needed
-        }
-
-        $chartN2->dataset('Voti', 'bar', [$voteCount]);
+        $chartN2->dataset('Voti', 'bar', $data);
+        // grafico 3
 
 
 

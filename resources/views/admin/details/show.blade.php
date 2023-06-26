@@ -103,5 +103,7 @@
 
 </div>
 {!! $chartN1->script() !!}
+{!! $chartN2->script() !!}
+
 
 @endsection
