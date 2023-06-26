@@ -94,3 +94,13 @@ a {
     background-color:rgb(187, 13, 13);
     // border: 3px solid rgb(187, 13, 13);
 }
+.fine-pagamento-cnt {
+    background-color: $primary;
+    color: white;
+    height: 40em;
+    .blocco-due {
+        a:hover {
+            color: rgb(97, 160, 155);
+        }
+    }
+}
