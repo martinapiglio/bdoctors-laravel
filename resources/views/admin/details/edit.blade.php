@@ -86,7 +86,7 @@
 
         <div class="d-flex justify-content-center gap-5">
           <button class="btn btn-dark" type="submit">Modifica</button>
-          <button class="btn btn-dark">Torna alla Dashboard</button>
+          <button class="btn btn-dark"><a href="{{ route('admin.dashboard') }}">Torna alla Dashboard</a></button>
         </div>
 
     </form>
