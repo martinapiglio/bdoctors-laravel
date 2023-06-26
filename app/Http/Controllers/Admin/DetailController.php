@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Charts\ReviewsMessagesMonth;
 use App\Charts\TotalVotes;
 use App\Http\Controllers\Controller;
 
@@ -99,6 +100,7 @@ class DetailController extends Controller
         $detail = Detail::where('user_id', Auth::id())->first();
         //dd($detail);
         // Grafico 1
+
         $maxValueVote = 0;
         $userVotes = [];
         for ($i = 1; $i <= 5; $i++) {
@@ -155,8 +157,10 @@ class DetailController extends Controller
         $data = [];
         $maxValuePerMonth = 0;
 
+        $monthNamesItalian = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+
         for ($month = 1; $month <= 12; $month++) {
-            $monthName = date('F', mktime(0, 0, 0, $month, 1));
+            $monthName = $monthNamesItalian[$month - 1];
             $yearMonth = date('Y-m', mktime(0, 0, 0, $month, 1));
             $labels[] = $monthName;
 
@@ -205,14 +209,87 @@ class DetailController extends Controller
             ]);
 
         $chartN2->dataset('Voti', 'bar', $data);
-        // grafico 3
 
+        // Grafico n'3
+        $chartN3 = new ReviewsMessagesMonth;
+        $labels = [];
+        $dataMessages = [];
+        $dataReviews = [];
+        $maxValuePerMonthMsg = 0;
+        $maxValuePerMonthRev = 0;
+        $maxValue = 0;
 
+        for ($month = 1; $month <= 12; $month++) {
+            $monthName = $monthNamesItalian[$month - 1];
+            $yearMonth = date('Y-m', mktime(0, 0, 0, $month, 1));
+            $labels[] = $monthName;
 
+            $reviewsCount = DB::table('reviews')
+                ->where([
+                    ['user_id', '=', Auth::id()],
+                    [DB::raw("DATE_FORMAT(created_at, '%Y-%m')"), '=', $yearMonth]
+                ])
+                ->count();
 
+            $messagesCount = DB::table('messages')
+                ->where([
+                    ['user_id', '=', Auth::id()],
+                    [DB::raw("DATE_FORMAT(created_at, '%Y-%m')"), '=', $yearMonth]
+                ])
+                ->count();
 
+            $dataMessages[] = $messagesCount;
+            $dataReviews[] = $reviewsCount;
+            if ($messagesCount > $maxValuePerMonthMsg) {
+                $maxValuePerMonthMsg = $messagesCount;
+            }
+            if ($reviewsCount > $maxValuePerMonthRev) {
+                $maxValuePerMonthRev = $reviewsCount;
+            }
+        }
 
-        return view('admin.details.show', compact('detail', 'chartN1', 'chartN2'));
+        if ($maxValuePerMonthMsg > $maxValuePerMonthRev) {
+            $maxValue = $maxValuePerMonthMsg;
+        } else {
+            $maxValue = $maxValuePerMonthRev;
+        };
+
+        $maxValue += 2;
+
+        $chartN3->labels($labels);
+        $chartN3->title('Grafico Messaggi Totali per Mese')
+            ->options([
+                'maintainAspectRatio' => false,
+                'scales' => [
+                    'yAxes' => [
+                        [
+                            'scaleLabel' => [
+                                'display' => true,
+                                'labelString' => 'Numero Messaggi e Recensioni'
+                            ],
+                            'ticks' => [
+                                'max' => $maxValue,
+                                'beginAtZero' => true,
+                                'stepSize' => 1,
+                                'precision' => 0
+                            ]
+                        ]
+                    ],
+                    'xAxes' => [
+                        [
+                            'scaleLabel' => [
+                                'display' => true,
+                                'labelString' => 'Mesi'
+                            ]
+                        ]
+                    ],
+                ],
+            ]);
+
+        $chartN3->dataset('Messaggi', 'bar', $dataMessages)->options(['backgroundColor' => 'rgba(255, 99, 132, 0.2)']);
+        $chartN3->dataset('Recensioni', 'bar', $dataReviews)->options(['backgroundColor' => 'rgba(54, 162, 235, 0.2)']);
+
+        return view('admin.details.show', compact('detail', 'chartN1', 'chartN2', 'chartN3'));
     }
 
     /**
