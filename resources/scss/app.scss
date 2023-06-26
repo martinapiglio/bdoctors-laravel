@@ -1,5 +1,13 @@
 @import "~bootstrap/scss/bootstrap";
 // @import "node_modules/font-awesome/scss/font-awesome.scss";
+$primary: rgb(40, 57, 99);
+.logo-cont{
+    height: 80px;
+    img{
+        height: 100%;
+        width: 100%;
+    }
+}
 
 a {
     color: inherit;
@@ -9,4 +17,80 @@ a {
 .__img-anonimo {
     height: 200px;
     width: 200px;
+}
+
+.benvenuto {
+    width: 100%;
+    height: calc(100vh - 88px);
+    color: white;
+    background-color: rgb(41, 59, 99);
+    .bd-cont {
+        // font-weight: bold;
+        font-size: 100px;
+        padding-left: 7%;
+    }
+    .altro-cnt {
+        font-size: 55px;
+    }
+}
+
+.dashboard-cnt {
+    height: 75vh;
+    .aside-cnt {
+        height: 100%;
+        .dash-aside {
+            height: 100%;
+            width: 20%;
+            color: white;
+            background-color: $primary;
+        }
+        h1 {
+            a {
+                color: $primary;
+                font-weight: bold;
+                font-size: 1.3em;
+            }
+        }
+    }
+}
+.sub-nav {
+    height: 3.5em;
+    background-color: $primary;
+    color: white;
+}
+.main-sec{
+    .jumbo-cont {
+        height: 400px;
+        img {
+            height: 100%;
+        }
+    }
+}
+.show-cnt {
+    background-color: $primary;
+    color: white;
+}
+
+.edit-btn {
+    color: rgb(98, 160, 155);
+    background-color:white;
+    border: 3px solid rgb(98, 160, 155);
+    // font-weight: bold;
+}
+
+.edit-btn:hover {
+    color:white;
+    background-color:rgb(98, 160, 155);
+}
+
+.erase-btn {
+    color: rgb(187, 13, 13);
+    background-color:white;
+    border: 3px solid rgb(187, 13, 13);
+}
+
+.erase-btn:hover {
+    color: white;
+    background-color:rgb(187, 13, 13);
+    // border: 3px solid rgb(187, 13, 13);
 }

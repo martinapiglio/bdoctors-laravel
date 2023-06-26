@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container py-5">
+<div class="create-cnt container py-5">
 
     <h3 class="mb-5">
         Aggiungi dettagli al tuo profilo
