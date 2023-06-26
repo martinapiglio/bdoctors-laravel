@@ -3,20 +3,20 @@
 @section('content')
 <div class="container py-5">
 
-    @if($detail) 
+    @if($detail)
 
     <div>
-        @if($detail->profile_pic) 
+        @if($detail->profile_pic)
         <img src="{{ asset('storage/' . $detail->profile_pic) }}" alt="">
         @else
         <img class="__img-anonimo" src="{{ asset('storage/profile_pic_folder/anonimo.jpg') }}" alt="">
         @endif
-        
+
         <br>
 
         <div class="my-4">
             @if($detail->curriculum)
-            <a href="{{ asset('storage/'. $detail->curriculum) }}" target="_blank" class="btn btn-primary">Mostra CV</a> 
+            <a href="{{ asset('storage/'. $detail->curriculum) }}" target="_blank" class="btn btn-primary">Mostra CV</a>
             <a href="{{ asset('storage/'. $detail->curriculum) }}" download="{{ $detail->slug . '-cv'}}" class="btn btn-primary">Download CV</a>
             @else
             <span> <i>Non hai aggiunto nessun curriculum. Per farlo, vai nella sezione di <a href="{{route('admin.details.edit', $detail->slug)}}">modifica profilo</a></button></i> </span>
@@ -31,8 +31,8 @@
         <strong>Numero di telefono:</strong> {{ $detail->phone_number }} <br>
         <strong>Prestazioni:</strong> {{ $detail->services }}    <br>
         <strong>Specializzazione principale:</strong> {{ $detail->user?->mainspec }}<br>
-        <strong>Specializzazioni aggiuntive:</strong>  
-        
+        <strong>Specializzazioni aggiuntive:</strong>
+
         @if(count($detail->specs) > 0)
             <ul>
                 @foreach($detail->specs as $spec)
@@ -40,9 +40,16 @@
                 @endforeach
             </ul>
 
-        @else  
+        @else
         Unknown
         @endif
+        <div class="p-5">
+            {!! $chartN1->container() !!}
+        </div>
+        <div class="p-5">
+            {!! $chartN2->container() !!}
+        </div>
+
     </div>
 
     <button class="btn btn-dark" type="submit"><a href="{{route('admin.details.edit', $detail->slug)}}">Modifica</a></button>
@@ -66,11 +73,11 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                
+
                     <form action="{{route('admin.details.destroy', $detail->slug)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                
+
                         <button class="btn btn-danger" type="submit">Cancella</button>
                     </form>
 
@@ -78,22 +85,23 @@
 
             </div>
         </div>
-    </div> 
+    </div>
     {{-- // modal --}}
 
 
-    @else 
+    @else
 
         <div>
             non hai aggiunto ancora nulla
         </div>
-    
+
     @endif
 
     <div class="my-4">
         <a href="{{ route('admin.dashboard') }}">Torna alla dashboard</a>
     </div>
-    
+
 </div>
+{!! $chartN1->script() !!}
 
 @endsection

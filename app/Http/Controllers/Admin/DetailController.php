@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Charts\TotalVotes;
 use App\Http\Controllers\Controller;
 
 use App\Models\Detail;
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Charts\VoteMonth;
+
+
 
 class DetailController extends Controller
 {
@@ -93,8 +97,110 @@ class DetailController extends Controller
     public function show(Detail $detail)
     {
         $detail = Detail::where('user_id', Auth::id())->first();
+        //dd($detail);
+        $chartN1 = new TotalVotes;
+        $chartN1->labels(['1', '2', '3', '4', '5'])
+            ->title('Grafico Voti Totali per Numero Voti')
+            ->options([
+                'maintainAspectRatio' => false,
+                'scales' => [
+                    'yAxes' => [
+                        [
+                            'scaleLabel' => [
+                                'display' => true,
+                                'labelString' => 'Numero Voti'
+                            ],
+                            'ticks' => [
+                                'max' => 8,
+                                'beginAtZero' => true,
+                                'stepSize' => 1,
+                                'precision' => 0
+                            ]
+                        ]
+                    ],
+                    'xAxes' => [
+                        [
+                            'scaleLabel' => [
+                                'display' => true,
+                                'labelString' => 'Voto'
+                            ]
+                        ]
+                    ],
+                ],
+            ]);
 
-        return view('admin.details.show', compact('detail'));
+        $userVotes = [];
+        for ($i = 1; $i <= 5; $i++) {
+            $userVotes[$i] = DB::table('votes')
+                ->where([
+                    ['user_id', '=', Auth::id()],
+                    ['vote', '=', $i]
+                ])
+                ->count();
+        }
+        $chartN1->dataset('Voti', 'bar', array_values($userVotes));
+
+        // Grafico n'2
+        $chartN2 = new VoteMonth;
+        $labels = [];
+
+        for ($month = 1; $month <= 12; $month++) {
+            $monthName = date('F', mktime(0, 0, 0, $month, 1));
+            $labels[] = $monthName;
+        }
+
+        $chartN2->labels($labels);
+        $chartN2->title('Grafico Voti Totali per Mese')
+            ->options([
+                'maintainAspectRatio' => false,
+                'scales' => [
+                    'yAxes' => [
+                        [
+                            'scaleLabel' => [
+                                'display' => true,
+                                'labelString' => 'Numero Voti'
+                            ],
+                            'ticks' => [
+                                'max' => 8,
+                                'beginAtZero' => true,
+                                'stepSize' => 1,
+                                'precision' => 0
+                            ]
+                        ]
+                    ],
+                    'xAxes' => [
+                        [
+                            'scaleLabel' => [
+                                'display' => true,
+                                'labelString' => 'Mesi'
+                            ]
+                        ]
+                    ],
+                ],
+            ]);
+
+        $votesByMonth = DB::table('votes')
+            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as vote_count'))
+            ->where('user_id', Auth::id())
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->get();
+        //dd($votesByMonth);
+        $voteCount = '';
+        foreach ($votesByMonth as $vote) {
+            $month = $vote->month;
+            $voteCount = $vote->vote_count;
+
+            // Process the month and vote count as needed
+        }
+
+        $chartN2->dataset('Voti', 'bar', [$voteCount]);
+
+
+
+
+
+
+        return view('admin.details.show', compact('detail', 'chartN1', 'chartN2'));
     }
 
     /**
