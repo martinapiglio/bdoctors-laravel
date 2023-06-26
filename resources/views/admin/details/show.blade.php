@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5">
+<div class="show-cnt text-center py-5">
 
     @if($detail) 
 
     <div>
         @if($detail->profile_pic) 
-        <img src="{{ asset('storage/' . $detail->profile_pic) }}" alt="">
+        <img id="profile-pic" src="{{ asset('storage/' . $detail->profile_pic) }}" alt="">
         @else
         <img class="__img-anonimo" src="{{ asset('storage/profile_pic_folder/anonimo.jpg') }}" alt="">
         @endif
@@ -19,32 +19,38 @@
             <a href="{{ asset('storage/'. $detail->curriculum) }}" download="{{ $detail->slug . '-cv'}}" class="btn btn-primary">Download CV</a>
         </div>
 
-        <strong>Nome:</strong> {{ $detail->user?->name }} <br>
-        <strong>Cognome:</strong> {{ $detail->user?->surname }} <br>
-        <strong>Indirizzo:</strong> {{ $detail->user?->address }} <br>
-        <strong>Descrizione:</strong> {{ $detail->user?->description }} <br>
-        <strong>Email:</strong> {{ $detail->user?->email }} <br>
-        <strong>Numero di telefono:</strong> {{ $detail->phone_number }} <br>
-        <strong>Prestazioni:</strong> {{ $detail->services }}    <br>
-        <strong>Specializzazione principale:</strong> {{ $detail->user?->mainspec }}<br>
-        <strong>Specializzazioni aggiuntive:</strong>  
-        
-        @if(count($detail->specs) > 0)
-            <ul>
-                @foreach($detail->specs as $spec)
-                <li>{{$spec->title}}</li>
-                @endforeach
-            </ul>
+        <div class="generalita w-25 text-center m-auto">
+            <div class="testo-ordinato text-start">
+                <strong>Nome:</strong> {{ $detail->user?->name }} <br>
+                <strong>Cognome:</strong> {{ $detail->user?->surname }} <br>
+                <strong>Indirizzo:</strong> {{ $detail->user?->address }} <br>
+                <strong>Descrizione:</strong> {{ $detail->user?->description }} <br>
+                <strong>Email:</strong> {{ $detail->user?->email }} <br>
+                <strong>Numero di telefono:</strong> {{ $detail->phone_number }} <br>
+                <strong>Prestazioni:</strong> {{ $detail->services }}    <br>
+                <strong>Specializzazione principale:</strong> {{ $detail->user?->mainspec }}<br>
+                <strong>Specializzazioni aggiuntive:</strong> 
+                @if(count($detail->specs) > 0)
+                <ul>
+                    @foreach($detail->specs as $spec)
+                    <li>{{$spec->title}}</li>
+                    @endforeach
+                </ul>
+    
+            @else  
+            Unknown
+            @endif 
+            </div>
+        </div>
 
-        @else  
-        Unknown
-        @endif
+        
+       
     </div>
 
-    <button class="btn btn-dark" type="submit"><a href="{{route('admin.details.edit', $detail->slug)}}">Modifica</a></button>
+    <button class="me-3 edit-btn btn" type="submit"><a href="{{route('admin.details.edit', $detail->slug)}}">Modifica</a></button>
 
     {{-- modal --}}
-    <button type="button" class="btn bg-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteProject">
+    <button type="button" class="erase-btn btn" data-bs-toggle="modal" data-bs-target="#deleteProject">
         Cancella
     </button>
 
