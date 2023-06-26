@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container py-5">
 
     @if($detail)
@@ -43,12 +44,6 @@
         @else
         Unknown
         @endif
-        <div class="p-5">
-            {!! $chartN1->container() !!}
-        </div>
-        <div class="p-5">
-            {!! $chartN2->container() !!}
-        </div>
 
     </div>
 
@@ -88,6 +83,15 @@
     </div>
     {{-- // modal --}}
 
+    <div class="p-5">
+        {!! $chartN1->container() !!}
+    </div>
+    <div class="p-5">
+        {!! $chartN2->container() !!}
+    </div>
+    <div class="p-5">
+        {!! $chartN3->container() !!}
+    </div>
 
     @else
 
@@ -104,6 +108,7 @@
 </div>
 {!! $chartN1->script() !!}
 {!! $chartN2->script() !!}
+{!! $chartN3->script() !!}
 
 
 @endsection
