@@ -6,7 +6,7 @@
 
     <div>
       <h3>Le tue sponsorizzazioni</h3>
-      @if ($user->detail->sponsorships == '')
+      @if (count($user->detail->sponsorships) > 0)
       <div class="container py-5 d-flex gap-3 justify-content-center">
         @foreach($user->detail->sponsorships as $userSponsorship)
         <div class="card" style="width: 18rem;">
@@ -27,7 +27,7 @@
       @else
       <div class="py-5">
         <i>non hai acquistato nessuna sponsorizzazione</i>
-      </div>
+      </div>  
       @endif
     </div>
 

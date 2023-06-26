@@ -54,6 +54,7 @@ class UserController extends Controller
             return response()->json([
                 'success' => false,
                 'error' => 'No users found',
+                'specs' => $specs,
             ]);
         }
 
