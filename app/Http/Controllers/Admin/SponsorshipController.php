@@ -24,8 +24,9 @@ class SponsorshipController extends Controller
     public function index()
     {
         $sponsorships = Sponsorship::all();
+        $user = User::where('id', Auth::id())->with('detail.sponsorships')->first();
 
-        return view('admin.sponsorships.index', compact('sponsorships'));
+        return view('admin.sponsorships.index', compact('sponsorships', 'user'));
     }
 
     /**
@@ -48,7 +49,6 @@ class SponsorshipController extends Controller
     {
         //retrieve the sponsorships slug
         $fullUrl = URL::full();
-        // ?basic=
         $parsed_url = parse_url($fullUrl);
         parse_str($parsed_url['query'], $query_params);
         $param_keys = array_keys($query_params);
@@ -81,7 +81,7 @@ class SponsorshipController extends Controller
 
             $transaction = $result->transaction;
 
-            //Insert data into the bridge table - da fare quando si avrà lo slug da sponsorship
+            //Insert data into the bridge table 
             DB::table('detail_sponsorship')->insert([
                 'detail_id' => $detail->id,
                 'sponsorship_id' => $sponsorship->id,
@@ -90,20 +90,20 @@ class SponsorshipController extends Controller
             ]);
 
             $startDate = DB::table('detail_sponsorship')->where('transactionid', $transaction->id)->value('start_date');
-            // dd($startDate);
 
             DB::table('detail_sponsorship')
                 ->where('transactionid', $transaction->id)
                 ->update(['end_date' => \Carbon\Carbon::parse($startDate)->addHours($sponsorship->duration)]);
 
-            return redirect()->route('admin.sponsorships.index');
+            return view('admin.sponsorships.payment');
         } else {
             // Transaction failed
             $errorString = "";
             foreach ($result->errors->deepAll() as $error) {
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
             }
-            return response()->json(['message' => 'Transaction failed', 'errors' => $errorString]);
+            return view('admin.sponsorships.payment-failed')
+                ->with('data', ['message' => 'Transaction failed', 'errors' => $errorString]);
         }
     }
 
@@ -150,7 +150,6 @@ class SponsorshipController extends Controller
      */
     public function update(Request $request, Sponsorship $sponsorship)
     {
-        //
     }
 
     /**

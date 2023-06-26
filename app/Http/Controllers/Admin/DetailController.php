@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 
 use App\Models\Detail;
@@ -21,19 +22,8 @@ class DetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        //take only authenticated user
-        // $user_id = Auth::id();
-
-        // $details = Detail::where('user_id', $user_id)->get();
-
-        // if(count($details) > 0 ) {
-        //     $detailItem = $details[0];
-        // } else {
-        //     $detailItem = false;
-        // };
-
-        // return view('admin.details.index', compact('detailItem'));
+    {
+        //
     }
 
     /**
@@ -45,7 +35,7 @@ class DetailController extends Controller
     {
         $detail = Detail::where('user_id', Auth::id())->first();
         $user = User::where('id', Auth::id())->first();
-        
+
         $specs = Spec::where('title', '!=', $user->mainspec)->get();
 
         return view('admin.details.create', compact('detail', 'user', 'specs'));
@@ -67,14 +57,14 @@ class DetailController extends Controller
 
         $newDetail = new Detail();
 
-        if($request->hasFile('profile_pic')){
+        if ($request->hasFile('profile_pic')) {
 
             $path = Storage::put('profile_pic_folder', $request->profile_pic);
 
             $formData['profile_pic'] = $path;
         };
-        
-        if($request->hasFile('curriculum')){
+
+        if ($request->hasFile('curriculum')) {
 
             $path = Storage::put('curriculum_folder', $request->curriculum);
 
@@ -85,9 +75,9 @@ class DetailController extends Controller
         $newDetail->slug = $user->slug;
         $newDetail->user_id = $user->id;
 
-        $newDetail->save(); 
+        $newDetail->save();
 
-        if(array_key_exists('specs', $formData)){
+        if (array_key_exists('specs', $formData)) {
             $newDetail->specs()->attach($formData['specs']);
         }
 
@@ -134,9 +124,9 @@ class DetailController extends Controller
 
         $this->validation($request);
 
-        if($request->hasFile('profile_pic')){
+        if ($request->hasFile('profile_pic')) {
 
-            if($detail->profile_pic) {
+            if ($detail->profile_pic) {
                 Storage::delete($detail->profile_pic);
             };
 
@@ -144,10 +134,10 @@ class DetailController extends Controller
 
             $formData['profile_pic'] = $path;
         };
-        
-        if($request->hasFile('curriculum')){
 
-            if($detail->curriculum) {
+        if ($request->hasFile('curriculum')) {
+
+            if ($detail->curriculum) {
                 Storage::delete($detail->curriculum);
             };
 
@@ -158,13 +148,13 @@ class DetailController extends Controller
 
         $detail->update($formData);
 
-        if(array_key_exists('specs', $formData)){
+        if (array_key_exists('specs', $formData)) {
             $detail->specs()->sync($formData['specs']);
         } else {
             $detail->specs()->detach();
         }
 
-         return redirect()->route('admin.details.show', $detail->slug);
+        return redirect()->route('admin.details.show', $detail->slug);
     }
 
     /**
@@ -175,11 +165,11 @@ class DetailController extends Controller
      */
     public function destroy(Detail $detail)
     {
-        if($detail->profile_pic) {
+        if ($detail->profile_pic) {
             Storage::delete($detail->profile_pic);
         };
 
-        if($detail->curriculum) {
+        if ($detail->curriculum) {
             Storage::delete($detail->curriculum);
         };
 
@@ -188,9 +178,10 @@ class DetailController extends Controller
         return redirect()->route('admin.dashboard');
     }
 
-    private function validation($request) {
+    private function validation($request)
+    {
 
-        $formData = $request->all(); 
+        $formData = $request->all();
 
         $validator = Validator::make($formData, [
             'curriculum' => 'nullable|mimes:pdf|max:10240',

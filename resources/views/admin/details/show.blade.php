@@ -15,8 +15,12 @@
         <br>
 
         <div class="my-4">
+            @if($detail->curriculum)
             <a href="{{ asset('storage/'. $detail->curriculum) }}" target="_blank" class="btn btn-primary">Mostra CV</a> 
             <a href="{{ asset('storage/'. $detail->curriculum) }}" download="{{ $detail->slug . '-cv'}}" class="btn btn-primary">Download CV</a>
+            @else
+            <span> <i>Non hai aggiunto nessun curriculum. Per farlo, vai nella sezione di <a href="{{route('admin.details.edit', $detail->slug)}}">modifica profilo</a></button></i> </span>
+            @endif
         </div>
 
         <strong>Nome:</strong> {{ $detail->user?->name }} <br>
@@ -85,6 +89,10 @@
         </div>
     
     @endif
+
+    <div class="my-4">
+        <a href="{{ route('admin.dashboard') }}">Torna alla dashboard</a>
+    </div>
     
 </div>
 

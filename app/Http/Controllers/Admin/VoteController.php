@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Vote;
 use Illuminate\Http\Request;
@@ -18,8 +19,6 @@ class VoteController extends Controller
         $user_id = Auth::id();
 
         $votes = Vote::where('user_id', $user_id)->get();
-
-        // dd($votes);
 
         return view('admin.votes.index', compact('votes'));
     }
@@ -53,7 +52,6 @@ class VoteController extends Controller
      */
     public function show()
     {
-        
     }
 
     /**

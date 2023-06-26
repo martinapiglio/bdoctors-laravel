@@ -9,7 +9,7 @@
     <?php
 
         $total = 0;
-        $count = count($votes);     // Get the number of elements in the array
+        $count = count($votes);  
 
         foreach($votes as $vote)
         {
@@ -37,7 +37,7 @@
             @foreach ($votes as $vote)
           <tr>
             <td> {{ $vote->voter }} </td>
-            <td> {{ $vote->vote }} /5</td>
+            <td> {{ $vote->vote }} / 5</td>
             
           </tr>
             @endforeach

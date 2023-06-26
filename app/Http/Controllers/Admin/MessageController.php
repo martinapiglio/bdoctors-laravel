@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Message;
 use Illuminate\Http\Request;
@@ -50,9 +51,6 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        // $message = Message::where('user_id', Auth::id())->get();
-
-        // return view('admin.messages.show', compact('message'));
 
         if ($message->user_id == Auth::id()) {
             return view('admin.messages.show', compact('message'));
@@ -60,7 +58,6 @@ class MessageController extends Controller
             // if the project belongs to a different user we redirect to the index page
             return redirect()->route('admin.messages.index');
         };
-
     }
 
     /**

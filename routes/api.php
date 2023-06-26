@@ -22,11 +22,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//users index + show routes
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{slug}', [UserController::class, 'show']);
 // store messages from vue input
 Route::post('/messages', [MessageController::class, 'store']);
 // store reviews from vue input
 Route::post('/reviews', [ReviewController::class, 'store']);
-// store reviews from vue input
+// store votes from vue input
 Route::post('/votes', [VoteController::class, 'store']);
