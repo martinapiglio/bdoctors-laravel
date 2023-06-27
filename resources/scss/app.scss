@@ -119,7 +119,7 @@ label{
     }
 }
 .sub-nav {
-    height: 3.5em;
+    height: 10%;
     background-color: $primary;
     color: white;
 }
@@ -250,4 +250,50 @@ label{
     a:hover {
         color: $secondary;
     }
+}
+  
+
+// ------------- media query  tablet
+
+@media screen and (min-width: 577px) and (max-width: 992px) {
+    .main-sec {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    // .sub-nav {
+    //     height: 10%;
+    // }
+}
+
+
+// ------------- media query  phone
+
+@media screen and (max-width: 576px) {
+    .main-sec {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .dash-reminders {
+        width: 280px;
+        padding: 20px 30px 20px 30px;
+    }
+
+    .jumbo-cont {
+        width: 300px;
+        
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    // .sub-nav {
+    //     height: 20%;
+    //     flex-direction: column;
+    //     gap: 10px;
+    // }
 }

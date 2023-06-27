@@ -10,22 +10,36 @@
         </h1>
     </div>
     @else
-        <div class="sub-nav d-flex justify-content-center align-items-center gap-4">
-            <a href="{{route('admin.details.show', $detail->slug)}}">Mostra i dati del tuo profilo</a><br>
-            <a href="{{route('admin.details.edit', $detail->slug)}}">Modifica i dati del tuo profilo</a><br>
-            <a href="{{route('admin.messages.index', $detail->slug)}}">Messaggi</a><br>
-            <a href="{{route('admin.reviews.index', $detail->slug)}}">Recensioni</a><br>
-            <a href="{{route('admin.votes.index', $detail->slug)}}">Voti</a><br>
-            <a href="{{route('admin.sponsorships.index')}}">Sponsorizzazioni</a>
+        <div class="sub-nav d-flex justify-content-evenly align-items-center flex-wrap">
+            <a class="d-none d-sm-none d-md-inline" href="{{route('admin.details.show', $detail->slug)}}">Mostra i dati del tuo profilo</a><br>
+            <a class="d-none d-sm-none d-md-inline" href="{{route('admin.details.edit', $detail->slug)}}">Modifica i dati del tuo profilo</a><br>
+            <a class="d-none d-sm-none d-md-inline" href="{{route('admin.messages.index', $detail->slug)}}">Messaggi</a><br>
+            <a class="d-none d-sm-none d-md-inline" href="{{route('admin.reviews.index', $detail->slug)}}">Recensioni</a><br>
+            <a class="d-none d-sm-none d-md-inline" href="{{route('admin.votes.index', $detail->slug)}}">Voti</a><br>
+            <a class="d-none d-sm-none d-md-inline" href="{{route('admin.sponsorships.index')}}">Sponsorizzazioni</a>
+            <div class="w-100 h-100 mb-5 ps-5 d-sm-flex align-items-center d-md-none dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{route('admin.details.show', $detail->slug)}}">Mostra i dati del tuo profilo</a></li>
+                  <li><a class="dropdown-item" href="{{route('admin.details.edit', $detail->slug)}}">Modifica i dati del tuo profilo</a></li>
+                  <li><a class="dropdown-item" href="{{route('admin.messages.index', $detail->slug)}}">Messaggi</a></li>
+                  <li><a class="dropdown-item" href="{{route('admin.reviews.index', $detail->slug)}}">Recensioni</a></li>
+                  <li><a class="dropdown-item" href="{{route('admin.votes.index', $detail->slug)}}">Voti</a></li>
+                  <li><a class="dropdown-item" href="{{route('admin.sponsorships.index')}}">Sponsorizzazioni</a></li>
+                </ul>
+            </div>
         </div>
+
         <h1 class="text-hello text-center pt-5">Ciao {{$user->name}}</h1>
         <h4 class="text-hello text-center">Questa è la tua area personale, qui puoi gestire il tuo profilo.</h4>
-        <div class="main-sec container d-flex justify-content-center align-items-center py-5">
-            <div class="jumbo-cont w-100">
+        <div class="main-sec container d-flex justify-content-center align-items-center gap-5 py-5">
+            <div class="jumbo-cont">
                 <img src="{{ asset("images/dottorireal.jpg") }}" alt="dottorini">
             </div>
             
-            <div class="dash-reminders d-flex flex-column justify-content-center gap-4">
+            <div class="dash-reminders d-flex flex-column justify-content-center flex-wrap gap-4">
                 <div>
                     <h5>Aiuta il tuo profilo a rimanere in primo piano</h5>
                     <a href="{{route('admin.sponsorships.index')}}">Scegli un piano di sponsorizzazioni</a>
