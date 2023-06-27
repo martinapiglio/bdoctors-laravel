@@ -3,8 +3,8 @@
 @section('content')
 <div class="container py-5">
 
-    <h3 class="mb-5">
-        Modifica i dettagli del tuo profilo
+    <h3 class="title mb-5">
+        Modifica i dettagli del tuo profilo 
     </h3>
 
     <form action=" {{ route('admin.details.update', $detail->slug) }} " method="POST" enctype="multipart/form-data" id="form">
@@ -61,7 +61,7 @@
 
         {{-- specs --}}
         <div class="input-group mb-3">
-            Specializzazioni aggiuntive* :
+            <span class="testo">Specializzazioni aggiuntive* :</span>
             
             @foreach($specs as $spec)
             <div class="form-check">
@@ -82,9 +82,13 @@
 
         </div>
 
-        <div class="text-center mb-4">I campi contrassegnati con * sono obbligatori.</div>
+        <div class="testo text-center mb-4">I campi contrassegnati con * sono obbligatori.</div>
 
-        <button class="btn btn-dark" type="submit">Modifica</button>
+        <div class="d-flex justify-content-center gap-5">
+          <button class="btn btn-dark" type="submit">Modifica</button>
+          <button class="btn btn-dark"><a href="{{ route('admin.dashboard') }}">Torna alla Dashboard</a></button>
+        </div>
+
     </form>
     
 </div>
