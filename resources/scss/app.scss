@@ -168,3 +168,68 @@ label{
         }
     }
 }
+
+.sponsorship-container {
+    background-color: $primary;
+    height: calc(100% + 70px);
+}
+
+.Basic {
+    color: $primary;
+    text-transform: uppercase;
+}
+
+.Premium {
+    color: rgb(181, 181, 181);
+    text-transform: uppercase;
+}
+
+.Gold {
+    color: rgb(212, 175, 55);
+    text-transform: uppercase;
+}
+
+#card-Basic {
+    border: 2px solid black;
+}
+
+#card-Premium {
+    border: 2px solid rgb(181, 181, 181);
+}
+
+#card-Gold {
+    border: 2px solid  rgb(212, 175, 55);
+}
+
+#btn-Basic {
+    background-color: $primary;
+    border: none;
+}
+
+#btn-Basic:hover {
+        background-color: white;
+        color: $primary;
+        border: 1px solid $primary;
+}
+
+#btn-Premium {
+    background-color: rgb(181, 181, 181);
+    border: none;
+}
+
+#btn-Premium:hover {
+        background-color: white;
+        color: rgb(181, 181, 181);
+        border: 1px solid rgb(181, 181, 181);
+}
+
+#btn-Gold {
+    background-color: rgb(212, 175, 55);
+    border: none;
+}
+
+#btn-Gold:hover {
+        background-color: white;
+        color: rgb(212, 175, 55);
+        border: 1px solid rgb(212, 175, 55);
+}
