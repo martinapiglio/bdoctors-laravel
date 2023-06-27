@@ -19,7 +19,7 @@
             <a class="d-none d-sm-none d-md-inline" href="{{route('admin.sponsorships.index')}}">Sponsorizzazioni</a>
             <div class="w-100 h-100 mb-5 ps-5 d-sm-flex align-items-center d-md-none dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown button
+                  Menu
                 </button>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="{{route('admin.details.show', $detail->slug)}}">Mostra i dati del tuo profilo</a></li>
