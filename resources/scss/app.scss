@@ -238,3 +238,16 @@ label{
 .text-hello {
     color: $primary;
 }
+
+.dash-reminders {
+    color: $primary;
+    background-color: rgb(239, 239, 239);
+    border-radius: 15px;
+    text-align: center;
+    width: 500px;
+    padding: 20px 30px 20px 30px;
+
+    a:hover {
+        color: $secondary;
+    }
+}

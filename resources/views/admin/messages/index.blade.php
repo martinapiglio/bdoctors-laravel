@@ -30,8 +30,6 @@
     @else
     <div>non hai messaggi</div>
     @endif
-
-
 </div>
 
 @endsection
