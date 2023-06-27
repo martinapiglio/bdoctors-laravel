@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 // @import "node_modules/font-awesome/scss/font-awesome.scss";
 $primary: rgb(40, 57, 99);
+$secondary: rgb(97,160, 155);
 .logo-cont{
     height: 80px;
     img{
@@ -32,12 +33,12 @@ a {
     }
     .procedi{color: rgb(97,160, 155);
         background-color: white;
-        border: 2px solid rgb(97,160, 155);
+        border: 2px solid $secondary;
         margin-top: 10px;
         margin-right: 15px;
         &:hover{
             color: white;
-        background-color: rgb(97,160, 155);
+        background-color: $secondary;
         }
     }
     .annulla{
@@ -136,15 +137,15 @@ label{
 }
 
 .edit-btn {
-    color: rgb(98, 160, 155);
+    color: $secondary;
     background-color:white;
-    border: 3px solid rgb(98, 160, 155);
+    border: 3px solid $secondary;
     // font-weight: bold;
 }
 
 .edit-btn:hover {
     color:white;
-    background-color:rgb(98, 160, 155);
+    background-color: $secondary;
 }
 
 .erase-btn {
@@ -164,7 +165,7 @@ label{
     height: 40em;
     .blocco-due {
         a:hover {
-            color: rgb(97, 160, 155);
+            color: $secondary;
         }
     }
 }
@@ -232,4 +233,8 @@ label{
         background-color: white;
         color: rgb(212, 175, 55);
         border: 1px solid rgb(212, 175, 55);
+}
+
+.text-hello {
+    color: $primary;
 }
