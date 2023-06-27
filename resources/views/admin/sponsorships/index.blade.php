@@ -46,7 +46,7 @@
           @endforeach
         </div>
       </div>
-      <a class="text-uppercase" href="">Torna alla Dashboard</a>
+      <a class="text-uppercase" href="{{ route('admin.dashboard') }}">Torna alla Dashboard</a>
   
   </div>
 </div>
