@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="container py-5">
-    <h3 class="mb-4">Messaggi</h3>
+    <h3 class="message-title mb-4">Messaggi</h3>
 
     @if(count($messages) > 0)
 
-    <table class="table">
+    <table class="table mb-3">
         <thead>
           <tr>
             <th scope="col">Nome</th>
@@ -17,7 +17,7 @@
         </thead>
         <tbody>
             @foreach ($messages as $message)
-          <tr>
+          <tr class="row-table">
             <td> {{ $message->name }} </td>
             <td> {{ $message->email }} </td>
             <td> {{ $message->subject }} </td>
@@ -28,9 +28,12 @@
       </table>
 
     @else
-    <div>non hai messaggi</div>
+    <div class="blue">non hai messaggi</div>
     @endif
 
+    <div class="d-flex justify-content-center mt-4">
+       <button class="btn btn-dark text-center"><a href="{{ route('admin.dashboard') }}">Torna alla Dashboard</a></button>
+    </div>
 
 </div>
 
