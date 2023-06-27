@@ -9,6 +9,8 @@ $primary: rgb(40, 57, 99);
     }
 }
 
+$primary: rgb(40, 57, 99);
+
 a {
     color: inherit;
     text-decoration: none;
@@ -19,6 +21,38 @@ a {
     width: 200px;
 }
 
+.title{
+    color: $primary;
+    font-weight: bold;
+}
+
+label{
+    color: $primary;
+    font-weight: bold;
+}
+
+.form-control{
+    border-color: $primary;
+}
+
+.btn{
+    background-color: $primary;
+    color: white;
+}
+
+.testo{
+    color: $primary;
+    font-weight: bold;
+}
+
+.btn.btn-dark{
+    border-color: $primary;
+}
+
+.btn.btn-dark:hover{
+    color: $primary;
+    background-color: white;
+}
 .benvenuto {
     width: 100%;
     height: calc(100vh - 88px);
