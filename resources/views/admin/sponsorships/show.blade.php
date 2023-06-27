@@ -2,22 +2,24 @@
 
 @section('content')
 
-<div class="container py-5">
+<div id="sfondo-pay">
+
+    <div class="py-5 container"></div>
 
     <h3 class="text-center">
         Ciao {{ $user->name }}, sei nella pagina di checkout. 
     <br>
-        Hai scelto la sponsorizzazione {{ $sponsorship->name }}
+        Hai scelto la sponsorizzazione <i>{{ $sponsorship->name }}</i>
     </h3>
 
-    <form method="post" action="{{ route('admin.sponsorships.store', $sponsorship->slug) }}">
+    <form class="container" method="post" action="{{ route('admin.sponsorships.store', $sponsorship->slug) }}">
     @csrf
 
-        <h3>Pagamento</h3>
+        <h3 class="py-3">Pagamento</h3>
 
         <div class="payment-container">
 
-            <label for="fname">Metodi di pagamento accettati</label>
+            <label for="fname">Metodi di pagamento accettati: <b>MasterCard <i class="fa-brands fa-cc-mastercard"></i>, Visa <i class="fa-brands fa-cc-visa"></i>, PayPal <i class="fa-brands fa-cc-paypal"></i></b></label>
     
             <div class="icon-container">
                 <i class="fa fa-cc-visa" style="color:navy;"></i>
@@ -27,7 +29,7 @@
                 <i class="fa fa-cc-discover" style="color:orange;"></i>
             </div>
 
-            <h5>Importo: {{ $sponsorship->price }} €</h5>
+            <label>Importo: <b>{{ $sponsorship->price }} €</b> </label>
     
                 <div class="form-input-container mb-3">
                     <label for="cname">Nome sulla carta</label>
@@ -49,7 +51,8 @@
                     <input type="number" id="cvv" name="cvv" placeholder="123" min="100" max="999" required>
                 </div>
     
-            <button class="btn btn-primary" type="submit">Procedi al pagamento</button>
+            <button class="btn procedi" type="submit">Procedi al pagamento</button>
+            <button class="btn annulla" type="submit"><a href="{{route('admin.dashboard')}}">Annulla pagamento</a> </button>
         </div>
 
     </form>

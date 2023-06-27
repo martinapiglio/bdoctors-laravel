@@ -1,6 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 // @import "node_modules/font-awesome/scss/font-awesome.scss";
 
+$primary: rgb(40, 57, 93);
+
 a {
     color: inherit;
     text-decoration: none;
@@ -9,4 +11,37 @@ a {
 .__img-anonimo {
     height: 200px;
     width: 200px;
+}
+
+#sfondo-pay{
+    background-color: $primary;
+    height: calc(100vh - 75px);
+    h3{color: white;}
+    h5{color: white;
+    }
+    label{
+        color: white;
+        padding: 10px 0 10px 0;
+        margin-right: 9px;
+    }
+    .procedi{color: rgb(97,160, 155);
+        background-color: white;
+        border: 2px solid rgb(97,160, 155);
+        margin-top: 10px;
+        margin-right: 15px;
+        &:hover{
+            color: white;
+        background-color: rgb(97,160, 155);
+        }
+    }
+    .annulla{
+        color: rgb(187, 13, 13);
+        background-color: white;
+        border: 2px solid rgb(187, 13, 13);
+        margin-top: 10px;
+        &:hover{
+            color: white;
+        background-color: rgb(187, 13, 13) ;
+        }
+    }
 }
