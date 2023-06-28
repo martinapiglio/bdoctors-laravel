@@ -5,6 +5,7 @@ $secondary: rgb(97, 160, 155);
 
 .logo-cont {
     height: 80px;
+    min-width: 115px;
 
     img {
         height: 100%;
@@ -335,7 +336,6 @@ label {
             background-color: $primary;
             color: white;
         }
-
     }
 }
 
@@ -368,7 +368,6 @@ label {
     }
 }
 
-
 // ------------- media query  tablet
 
 @media screen and (min-width: 577px) and (max-width: 992px) {
@@ -383,7 +382,6 @@ label {
     // }
 }
 
-
 // ------------- media query  phone
 
 @media screen and (max-width: 576px) {
@@ -392,6 +390,9 @@ label {
         flex-direction: column;
         gap: 20px;
     }
+    // .__home-link-ctn {
+    //     display: none;
+    // }
 
     .dash-reminders {
         width: 280px;
