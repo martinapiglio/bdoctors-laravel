@@ -49,10 +49,5 @@
                 @endguest
             </ul>
         </div>
-<<<<<<< HEAD
 
 </nav>
-=======
-    </div>
-</nav>
->>>>>>> fra_navbar_lara_28_06
