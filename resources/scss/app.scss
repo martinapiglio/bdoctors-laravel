@@ -1,9 +1,19 @@
 @import "~bootstrap/scss/bootstrap";
 // @import "node_modules/font-awesome/scss/font-awesome.scss";
 $primary: rgb(40, 57, 99);
+$header-height: 15vh;
+$footer-height: 10vh;
+
+.outer-container {
+    padding-top: $header-height;
+    min-height: calc(100vh - $footer-height);
+}
 
 .custom-nav {
-    height: 15vh;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    height: $header-height;
     padding: 0 5rem 0;
     font-size: 18px;
     font-weight: bold;
@@ -71,8 +81,10 @@ a {
 #sfondo-pay {
     background-color: $primary;
     height: 100%;
-    span{font-style: italic;};
-    i{
+    span {
+        font-style: italic;
+    }
+    i {
         margin-right: 10px;
         color: white;
         font-size: 2.3em;
@@ -90,7 +102,7 @@ a {
         padding: 10px 0 10px 0;
         margin-right: 9px;
     }
-    #div-icone{
+    #div-icone {
         margin-bottom: 8px;
     }
     .procedi {
@@ -228,7 +240,7 @@ label {
     // border: 3px solid rgb(187, 13, 13);
 }
 .fine-pagamento-cnt {
-    height: 100%;
+    height: calc(100vh - $footer-height - $header-height);
     background-color: $primary;
     color: white;
     //height: 40em;
@@ -243,6 +255,14 @@ label {
 .sponsorship-container {
     background-color: $primary;
     height: 100%;
+
+    .active-not-spons {
+        font-weight: bold;
+    }
+
+    .card-custom {
+        background-color: rgba($color: #ffffff, $alpha: 0.5);
+    }
 }
 
 .Basic {
@@ -376,14 +396,11 @@ label {
             color: white;
         }
 
-        .hover-link:hover{
+        .hover-link:hover {
             color: #62a09b;
         }
-
     }
 }
-
-
 
 .review-title {
     font-weight: bold;
@@ -410,6 +427,19 @@ label {
     }
 }
 
+.footer-custom {
+    height: $footer-height;
+    .footer-el {
+        span {
+            font-weight: bold;
+            color: $primary;
+        }
+
+        i {
+            color: $green;
+        }
+    }
+}
 
 // ------------- media query  tablet
 
@@ -424,23 +454,21 @@ label {
     //     height: 10%;
     // }
 
-    .view-body{
+    .view-body {
         display: none;
     }
 }
-
 
 // ------------- media query  phone
 
 @media screen and (min-width: 130px) {
     .benvenuto {
-    
         .bd-cont-sm {
             // font-weight: bold;
             font-size: 50px;
             // padding-left: 7%;
         }
-    
+
         .altro-cnt-sm {
             font-size: 25px;
         }
@@ -468,7 +496,7 @@ label {
         }
     }
 
-    .view-body{
+    .view-body {
         display: none;
     }
 }

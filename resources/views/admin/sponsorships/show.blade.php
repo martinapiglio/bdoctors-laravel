@@ -17,7 +17,7 @@
 
         <h3 class="py-3">Pagamento</h3>
 
-        <div class="payment-container">
+        <div class="payment-container pb-5">
 
             <label for="fname">Metodi di pagamento accettati: </label>
     

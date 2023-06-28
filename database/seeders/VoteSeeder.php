@@ -16,16 +16,15 @@ class VoteSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($i = 0; $i < 50; $i++){
+        for ($i = 0; $i < 100; $i++) {
 
             $vote = new Vote();
 
-            $vote->user_id = random_int(1, 8);
+            $vote->user_id = random_int(2, 11);
             $vote->voter = $faker->name();
             $vote->vote = random_int(1, 5);
 
             $vote->save();
-
         }
     }
 }
