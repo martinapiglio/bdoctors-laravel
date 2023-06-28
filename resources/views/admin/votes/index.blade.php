@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-5">
-    <h3 class="mb-4">Voti</h3>
+    <h3 class="vote-title mb-4">Voti</h3>
 
     @if(count($votes) > 0)
 
@@ -21,12 +21,12 @@
 
     ?>
 
-    <div>
+    <div class="blue">
         Voto medio: {{ $roundedAverage }}
     </div>
 
 
-    <table class="table">
+    <table class="table mb-3">
         <thead>
           <tr>
             <th scope="col">Nome votante</th>
@@ -35,7 +35,7 @@
         </thead>
         <tbody>
             @foreach ($votes as $vote)
-          <tr>
+          <tr class="row-table">
             <td> {{ $vote->voter }} </td>
             <td> {{ $vote->vote }} / 5</td>
             
@@ -45,9 +45,12 @@
       </table>
 
     @else
-    <div>non hai voti</div>
+    <div class="blue">non hai voti</div>
     @endif
 
+    <div class="d-flex justify-content-center mt-4">
+       <button class="btn btn-dark text-center"><a href="{{ route('admin.dashboard') }}">Torna alla Dashboard</a></button>
+    </div>   
 
 </div>
 

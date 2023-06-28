@@ -285,3 +285,41 @@ label {
         }
     }
 }
+
+.vote-title{
+    font-weight: bold;
+    color: $primary;
+    font-size: 30px;
+}
+
+.blue{
+    color: $primary;
+}
+
+.table{
+    font-size: 18px;
+
+    th{
+        color: $primary;
+    }
+
+    .row-table:hover{
+        td{
+            background-color: $primary;
+            color: white;
+        }
+        
+    }
+}
+
+.review-title{
+    font-weight: bold;
+    color: $primary;
+    font-size: 30px;
+}
+
+.message-title{
+    font-weight: bold;
+    color: $primary;
+    font-size: 30px;
+}
