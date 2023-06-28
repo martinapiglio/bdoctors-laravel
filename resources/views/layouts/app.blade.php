@@ -29,9 +29,12 @@
         <header>
             @include('layouts/partials/header')
         </header>
-        <main class="">
+        <main class="outer-container-main">
             @yield('content')
         </main>
+        <footer>
+            @include('layouts/partials/footer')
+        </footer>
     </div>
     
 

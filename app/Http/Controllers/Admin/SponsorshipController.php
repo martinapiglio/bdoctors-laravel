@@ -24,7 +24,10 @@ class SponsorshipController extends Controller
     public function index()
     {
         $sponsorships = Sponsorship::all();
-        $user = User::where('id', Auth::id())->with('detail.sponsorships')->first();
+        $user = User::where('id', Auth::id())->with(['detail.sponsorships' => function ($query) {
+            $query->orderBy('detail_sponsorship.end_date', 'desc');
+        }])
+            ->first();
 
         return view('admin.sponsorships.index', compact('sponsorships', 'user'));
     }

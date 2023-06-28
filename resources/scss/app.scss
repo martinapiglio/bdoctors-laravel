@@ -1,9 +1,15 @@
 @import "~bootstrap/scss/bootstrap";
 // @import "node_modules/font-awesome/scss/font-awesome.scss";
 $primary: rgb(40, 57, 99);
+$secondary: #62a09b;
+$header-height: 15vh;
+$footer-height: 10vh;
 
 .custom-nav {
-    height: 15vh;
+    height: $header-height;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
     padding: 0 5rem 0;
     font-size: 18px;
     font-weight: bold;
@@ -50,6 +56,7 @@ $primary: rgb(40, 57, 99);
         }
     }
 }
+
 .logo-cont {
     height: 80px;
     min-width: 115px;
@@ -68,6 +75,14 @@ a {
 .__img-anonimo {
     height: 200px;
     width: 200px;
+}
+
+.outer-container-main {
+    padding-top: $header-height;
+    min-width: 300px;
+    min-height: calc(100vh - $footer-height);
+    max-width: 100%;
+    max-height: 100%;
 }
 
 #sfondo-pay {
@@ -232,7 +247,11 @@ label {
     // border: 3px solid rgb(187, 13, 13);
 }
 .fine-pagamento-cnt {
-    height: 100%;
+    padding-top: $header-height;
+    min-width: 300px;
+    min-height: calc(100vh - $footer-height);
+    max-width: 100%;
+    max-height: 100%;
     background-color: $primary;
     color: white;
     //height: 40em;
@@ -247,6 +266,14 @@ label {
 .sponsorship-container {
     background-color: $primary;
     height: 100%;
+
+    .expired-spons {
+        background-color: rgba($color: #ffffff, $alpha: 0.6);
+    }
+
+    .active-not-spons {
+        font-weight: bold;
+    }
 }
 
 .Basic {
@@ -498,6 +525,20 @@ label {
         &:hover {
             background-color: rgb(98, 160, 155);
             color: white;
+        }
+    }
+}
+
+.footer-custom {
+    height: $footer-height;
+    .footer-el {
+        span {
+            font-weight: bold;
+            color: $primary;
+        }
+
+        i {
+            color: $secondary;
         }
     }
 }

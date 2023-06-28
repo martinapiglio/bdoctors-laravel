@@ -4,7 +4,7 @@
 
 <div id="sfondo-pay">
 
-    <div class="py-5 container"></div>
+    <div class="py-5 container">
 
     <h3 class="text-center">
         Ciao {{ $user->name }}, sei nella pagina di checkout. 
@@ -56,6 +56,8 @@
         </div>
 
     </form>
+    </div>
+
 
 </div>
 

@@ -6,27 +6,41 @@
   
       <div>
         <h3>Le tue sponsorizzazioni</h3>
-        @if (count($user->detail->sponsorships) > 0)
         <div class="container py-5 d-flex gap-3 justify-content-center flex-wrap">
-          @foreach($user->detail->sponsorships as $userSponsorship)
+        @if (count($user->detail->sponsorships) > 0)
+        @foreach($user->detail->sponsorships as $userSponsorship)
+          <?php
+          $dateString = strtotime($userSponsorship->pivot->end_date);
+          $currentDt = date('Y-m-d H:i:s');
+
+          $date = date('d/m', $dateString);
+          $time = date('H:i', $dateString);
+          ?>
+
+          @if($currentDt <= $userSponsorship->pivot->end_date )
           <div class="card" style="width: 18rem;">
               <div class="card-body">
                 <h5 class="card-title"> {{ $userSponsorship->name }} </h5>
-                <?php
-                $dateString = strtotime($userSponsorship->pivot->end_date);
-  
-                $date = date('d/m', $dateString);
-                $time = date('H:i', $dateString);
-                  ?>
                 <p class="card-text"> La sponsorizzazione del tuo profilo durerà {{ $userSponsorship->duration }} ore
                     e terminerà il {{ $date }} alle {{ $time }}.</p>
               </div>
+              <div class="pb-4 text-success active-not-spons">LA SPONSORIZZAZIONE E' ATTIVA</div>
           </div>
+          @else
+          <div class="card expired-spons" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"> {{ $userSponsorship->name }} </h5>
+              <p class="card-text"> La sponsorizzazione del tuo profilo è durata {{ $userSponsorship->duration }} ore
+                  ed è terminata il {{ $date }} alle {{ $time }}.</p>
+            </div>
+            <div class="pb-4 text-danger active-not-spons">LA SPONSORIZZAZIONE E' SCADUTA</div>
+          </div>
+          @endif
           @endforeach
         </div>
         @else
         <div class="py-5">
-          <i>non hai acquistato nessuna sponsorizzazione</i>
+          <i>Non hai acquistato nessuna sponsorizzazione</i>
         </div>  
         @endif
       </div>
