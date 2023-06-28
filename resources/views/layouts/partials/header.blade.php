@@ -1,5 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm custom-nav">
-
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm custom-nav flex-nowrap">
         <div class="logo-cont p-3">
             <img class="img-fluid" src="{{asset("images/BDOCTORS-LogoB.jpg")}}" alt="logone">
         </div>
@@ -49,5 +48,4 @@
                 @endguest
             </ul>
         </div>
-
 </nav>
