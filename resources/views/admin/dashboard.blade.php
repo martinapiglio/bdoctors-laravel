@@ -4,9 +4,9 @@
 <div class="dashboard-cnt h-100">
 
     @if(!$detail)
-    <div class="container h-100 d-flex justify-content-center align-items-center">
+    <div class="undetail-cnt container d-flex justify-content-center align-items-center">
         <h1 class="text-uppercase">
-            <a href="{{route('admin.details.create', $user->slug)}}">Completa il tuo profilo</a>
+            <a href="{{route('admin.details.create', $user->slug)}}">Ciao {{ $user->name }} ci siamo quasi,<br>arricchisci il tuo profilo!</a>
         </h1>
     </div>
     @else
@@ -23,7 +23,7 @@
                 <button class="sub-nav-btn btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Menu
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu drop-list">
                   <li><a class="dropdown-item" href="{{route('admin.details.show', $detail->slug)}}">Mostra i dati del tuo profilo</a></li>
                   <li><a class="dropdown-item" href="{{route('admin.details.edit', $detail->slug)}}">Modifica i dati del tuo profilo</a></li>
                   <li><a class="dropdown-item" href="{{route('admin.messages.index', $detail->slug)}}">Messaggi</a></li>

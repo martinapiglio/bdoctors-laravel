@@ -1,5 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm custom-nav">
-
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm custom-nav flex-nowrap">
         <div class="logo-cont p-3">
             <img class="img-fluid" src="{{asset("images/BDOCTORS-LogoB.jpg")}}" alt="logone">
         </div>
@@ -29,7 +28,7 @@
                 @endif
                 @else
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown links" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a id="navbarDropdown links" class="nav-link dropdown-toggle d-none d-lg-inline" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}
                     </a>
 
@@ -49,5 +48,4 @@
                 @endguest
             </ul>
         </div>
-
 </nav>
