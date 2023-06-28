@@ -24,7 +24,7 @@ a {
 
 #sfondo-pay {
     background-color: $primary;
-    height: calc(100vh - 75px);
+    height: 100%;
     span{font-style: italic;};
     i{
         margin-right: 10px;
@@ -193,9 +193,10 @@ label {
 }
 
 .fine-pagamento-cnt {
+    height: 100%;
     background-color: $primary;
     color: white;
-    height: 40em;
+    //height: 40em;
 
     .blocco-due {
         a:hover {

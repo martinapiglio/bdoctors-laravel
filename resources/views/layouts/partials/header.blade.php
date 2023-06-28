@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
     <div class="container">
         <div class="logo-cont pt-2">
             <img src="{{asset("images/BDOCTORS-LogoB.jpg")}}" alt="logone">
