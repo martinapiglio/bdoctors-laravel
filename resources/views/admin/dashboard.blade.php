@@ -20,7 +20,7 @@
                 <a href="{{route('admin.sponsorships.index')}}">Sponsorizzazioni</a>
             </div>
             <div class="d-flex d-md-none justify-content-center p-3 align-items-center dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="sub-nav-btn btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Menu
                 </button>
                 <ul class="dropdown-menu">

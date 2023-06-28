@@ -143,6 +143,11 @@ label {
     height: 10%;
     background-color: $primary;
     color: white;
+    div {
+        .sub-nav-btn:hover {
+            background-color: $secondary;
+        }
+    }
 }
 
 .main-sec {
