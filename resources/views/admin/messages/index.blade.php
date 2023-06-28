@@ -11,7 +11,7 @@
           <tr>
             <th scope="col">Nome</th>
             <th scope="col">Email</th>
-            <th scope="col">Oggetto</th>
+            <th scope="col">Oggetto del messaggio</th>
             <th scope="col"></th>
           </tr>
         </thead>
