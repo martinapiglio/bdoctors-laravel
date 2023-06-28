@@ -357,8 +357,15 @@ label {
             background-color: $primary;
             color: white;
         }
+
+        .hover-link:hover{
+            color: #62a09b;
+        }
+
     }
 }
+
+
 
 .review-title {
     font-weight: bold;
@@ -370,4 +377,92 @@ label {
     font-weight: bold;
     color: $primary;
     font-size: 30px;
+}
+
+.dash-reminders {
+    color: $primary;
+    background-color: rgb(239, 239, 239);
+    border-radius: 15px;
+    text-align: center;
+    width: 500px;
+    padding: 20px 30px 20px 30px;
+
+    a:hover {
+        color: $secondary;
+    }
+}
+
+
+// ------------- media query  tablet
+
+@media screen and (min-width: 577px) and (max-width: 992px) {
+    .main-sec {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    // .sub-nav {
+    //     height: 10%;
+    // }
+
+    .view-body{
+        display: none;
+    }
+}
+
+
+// ------------- media query  phone
+
+@media screen and (max-width: 576px) {
+    .main-sec {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .dash-reminders {
+        width: 280px;
+        padding: 20px 30px 20px 30px;
+    }
+
+    .jumbo-cont {
+        width: 300px;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .view-body{
+        display: none;
+    }
+}
+
+// .sub-nav {
+//     height: 20%;
+//     flex-direction: column;
+//     gap: 10px;
+// }
+#show-mess,
+#show-recensioni {
+    color: $primary;
+
+    h1 {
+        padding: 30px 0 7px 0;
+    }
+
+    p {
+        padding: 25px 0 25px 0;
+    }
+
+    button {
+        background-color: $primary;
+
+        &:hover {
+            background-color: rgb(98, 160, 155);
+            color: white;
+        }
+    }
 }
