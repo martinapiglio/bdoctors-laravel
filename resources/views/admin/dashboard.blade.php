@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="dashboard-cnt">
+<div class="dashboard-cnt h-100">
 
     @if(!$detail)
     <div class="container h-100 d-flex justify-content-center align-items-center">
@@ -10,14 +10,16 @@
         </h1>
     </div>
     @else
-        <div class="sub-nav d-flex justify-content-evenly align-items-center flex-wrap">
-            <a class="d-none d-sm-none d-md-inline" href="{{route('admin.details.show', $detail->slug)}}">Mostra i dati del tuo profilo</a><br>
-            <a class="d-none d-sm-none d-md-inline" href="{{route('admin.details.edit', $detail->slug)}}">Modifica i dati del tuo profilo</a><br>
-            <a class="d-none d-sm-none d-md-inline" href="{{route('admin.messages.index', $detail->slug)}}">Messaggi</a><br>
-            <a class="d-none d-sm-none d-md-inline" href="{{route('admin.reviews.index', $detail->slug)}}">Recensioni</a><br>
-            <a class="d-none d-sm-none d-md-inline" href="{{route('admin.votes.index', $detail->slug)}}">Voti</a><br>
-            <a class="d-none d-sm-none d-md-inline" href="{{route('admin.sponsorships.index')}}">Sponsorizzazioni</a>
-            <div class="w-100 h-100 mb-5 ps-5 d-sm-flex align-items-center d-md-none dropdown">
+        <div class="sub-nav">
+            <div class="primi-link d-none d-md-flex p-3 justify-content-center gap-5 align-items-center flex-wrap">
+                <a href="{{route('admin.details.show', $detail->slug)}}">Mostra i dati del tuo profilo</a>
+                <a href="{{route('admin.details.edit', $detail->slug)}}">Modifica i dati del tuo profilo</a>
+                <a href="{{route('admin.messages.index', $detail->slug)}}">Messaggi</a>
+                <a href="{{route('admin.reviews.index', $detail->slug)}}">Recensioni</a>
+                <a href="{{route('admin.votes.index', $detail->slug)}}">Voti</a>
+                <a href="{{route('admin.sponsorships.index')}}">Sponsorizzazioni</a>
+            </div>
+            <div class="d-flex d-md-none justify-content-center p-3 align-items-center dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Menu
                 </button>
@@ -52,12 +54,12 @@
     
                 <div>
                     <h5>Tieni sempre in considerazione l'opinione dei tuoi pazienti</h5>
-                    <a href="{{route('admin.reviews.index', $detail->slug)}}">Visualizza le tue recensioni</a><br>   
+                    <a href="{{route('admin.reviews.index', $detail->slug)}}">Visualizza le tue recensioni</a>   
                 </div>
 
                 <div>
                     <h5>Il giudizio dei tuoi pazienti è molto importante</h5>
-                    <a href="{{route('admin.votes.index', $detail->slug)}}">Visualizza i tuoi voti</a><br>
+                    <a href="{{route('admin.votes.index', $detail->slug)}}">Visualizza i tuoi voti</a>
                 </div>
             </div>
         </div>
