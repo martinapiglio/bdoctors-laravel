@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
-    <div class="container">
-        <div class="logo-cont pt-2">
-            <img src="{{asset("images/BDOCTORS-LogoB.jpg")}}" alt="logone">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm custom-nav">
+
+        <div class="logo-cont p-3">
+            <img class="img-fluid" src="{{asset("images/BDOCTORS-LogoB.jpg")}}" alt="logone">
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -10,26 +10,26 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                <li class="nav-item links-container">
+                    <a class="links title-home" href="{{url('/') }}">{{ __('Home') }}</a>
                 </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto d-flex gap-3 align-items-center">
                 <!-- Authentication Links -->
                 @guest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
                 @if (Route::has('register'))
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                <li class="nav-item links-container">
+                    <a class="links" href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                </li>
+                <li class="nav-item links-container">
+                    <a class="links" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
                 @endif
                 @else
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a id="navbarDropdown links" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}
                     </a>
 
@@ -49,5 +49,5 @@
                 @endguest
             </ul>
         </div>
-    </div>
+
 </nav>

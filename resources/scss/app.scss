@@ -1,11 +1,57 @@
 @import "~bootstrap/scss/bootstrap";
 // @import "node_modules/font-awesome/scss/font-awesome.scss";
 $primary: rgb(40, 57, 99);
-$secondary: rgb(97, 160, 155);
 
+.custom-nav {
+    height: 15vh;
+    padding: 0 5rem 0;
+    font-size: 18px;
+    font-weight: bold;
+
+    .title-home {
+        color: $primary;
+    }
+
+    .links-container {
+        position: relative;
+        transition: all 0.2s;
+        .links {
+            color: $primary;
+            position: relative;
+            font-weight: bold;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .links::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            top: 1.4rem;
+            left: 0;
+            background-color: $green;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .links:hover {
+            color: $green;
+        }
+    }
+
+    .links-container:hover {
+        color: $green;
+        cursor: pointer;
+        .links::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    }
+}
 .logo-cont {
-    height: 80px;
-
+    height: 100%;
     img {
         height: 100%;
         width: 100%;
@@ -31,15 +77,14 @@ a {
         color: white;
         font-size: 2.3em;
     }
+    //height: calc(100vh - 75px);
     h3 {
         color: white;
         margin-bottom: 3px;
     }
-
     h5 {
         color: white;
     }
-
     label {
         color: white;
         padding: 10px 0 10px 0;
@@ -51,29 +96,25 @@ a {
     .procedi {
         color: rgb(97, 160, 155);
         background-color: white;
-        border: 2px solid $secondary;
+        border: 2px solid rgb(97, 160, 155);
         margin-top: 10px;
         margin-right: 15px;
-
         &:hover {
             color: white;
-            background-color: $secondary;
+            background-color: rgb(97, 160, 155);
         }
     }
-
     .annulla {
         color: rgb(187, 13, 13);
         background-color: white;
         border: 2px solid rgb(187, 13, 13);
         margin-top: 10px;
-
         &:hover {
             color: white;
             background-color: rgb(187, 13, 13);
         }
     }
 }
-
 .title {
     color: $primary;
     font-weight: bold;
@@ -106,19 +147,16 @@ label {
     color: $primary;
     background-color: white;
 }
-
 .benvenuto {
     width: 100%;
     height: calc(100vh - 88px);
     color: white;
     background-color: rgb(41, 59, 99);
-
     .bd-cont {
         // font-weight: bold;
         font-size: 100px;
-        padding-left: 7%;
+        // padding-left: 7%;
     }
-
     .altro-cnt {
         font-size: 55px;
     }
@@ -126,17 +164,14 @@ label {
 
 .dashboard-cnt {
     height: 75vh;
-
     .aside-cnt {
         height: 100%;
-
         .dash-aside {
             height: 100%;
             width: 20%;
             color: white;
             background-color: $primary;
         }
-
         h1 {
             a {
                 color: $primary;
@@ -146,38 +181,39 @@ label {
         }
     }
 }
-
 .sub-nav {
-    height: 10%;
+    height: 3.5em;
     background-color: $primary;
     color: white;
+    div {
+        .sub-nav-btn:hover {
+            background-color: $secondary;
+        }
+    }
 }
-
 .main-sec {
     .jumbo-cont {
         height: 400px;
-
         img {
             height: 100%;
         }
     }
 }
-
 .show-cnt {
     background-color: $primary;
     color: white;
 }
 
 .edit-btn {
-    color: $secondary;
+    color: rgb(98, 160, 155);
     background-color: white;
-    border: 3px solid $secondary;
+    border: 3px solid rgb(98, 160, 155);
     // font-weight: bold;
 }
 
 .edit-btn:hover {
     color: white;
-    background-color: $secondary;
+    background-color: rgb(98, 160, 155);
 }
 
 .erase-btn {
@@ -191,7 +227,6 @@ label {
     background-color: rgb(187, 13, 13);
     // border: 3px solid rgb(187, 13, 13);
 }
-
 .fine-pagamento-cnt {
     height: 100%;
     background-color: $primary;
@@ -200,7 +235,7 @@ label {
 
     .blocco-due {
         a:hover {
-            color: $secondary;
+            color: rgb(97, 160, 155);
         }
     }
 }
@@ -273,7 +308,6 @@ label {
 #profile-img {
     height: 500px;
     overflow: hidden;
-
     img {
         max-width: 100%;
         max-height: 100%;
@@ -307,14 +341,11 @@ label {
     width: 100%;
     border-radius: 15px;
     background-color: #e5e5e5;
-
     h3 {
         color: $primary;
     }
-
     .charts {
         width: 100%;
-
         .chart {
             min-width: calc(100% / 3);
             max-width: calc(100%);
@@ -345,8 +376,14 @@ label {
             color: white;
         }
 
+        .hover-link:hover{
+            color: #62a09b;
+        }
+
     }
 }
+
+
 
 .review-title {
     font-weight: bold;
@@ -358,10 +395,6 @@ label {
     font-weight: bold;
     color: $primary;
     font-size: 30px;
-
-    .text-hello {
-        color: $primary;
-    }
 }
 
 .dash-reminders {
@@ -390,10 +423,29 @@ label {
     // .sub-nav {
     //     height: 10%;
     // }
+
+    .view-body{
+        display: none;
+    }
 }
 
 
 // ------------- media query  phone
+
+@media screen and (min-width: 130px) {
+    .benvenuto {
+    
+        .bd-cont-sm {
+            // font-weight: bold;
+            font-size: 50px;
+            // padding-left: 7%;
+        }
+    
+        .altro-cnt-sm {
+            font-size: 25px;
+        }
+    }
+}
 
 @media screen and (max-width: 576px) {
     .main-sec {
@@ -414,6 +466,10 @@ label {
             width: 100%;
             object-fit: cover;
         }
+    }
+
+    .view-body{
+        display: none;
     }
 }
 
