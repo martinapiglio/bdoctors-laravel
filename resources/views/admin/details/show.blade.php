@@ -7,7 +7,7 @@
 
     <h2 class="pb-5">Il tuo profilo</h2>
 
-    <div class="d-flex flex-wrap gap-5">
+    <div class="d-flex flex-wrap gap-3">
         <div id="profile-img">
             @if($detail->profile_pic) 
             <img id="profile-pic" src="{{ asset('storage/' . $detail->profile_pic) }}" alt="">
