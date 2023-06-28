@@ -25,9 +25,15 @@ a {
 #sfondo-pay {
     background-color: $primary;
     height: calc(100vh - 75px);
-
+    span{font-style: italic;};
+    i{
+        margin-right: 10px;
+        color: white;
+        font-size: 2.3em;
+    }
     h3 {
         color: white;
+        margin-bottom: 3px;
     }
 
     h5 {
@@ -39,7 +45,9 @@ a {
         padding: 10px 0 10px 0;
         margin-right: 9px;
     }
-
+    #div-icone{
+        margin-bottom: 8px;
+    }
     .procedi {
         color: rgb(97, 160, 155);
         background-color: white;
