@@ -12,7 +12,7 @@
             @if($detail->profile_pic) 
             <img id="profile-pic" src="{{ asset('storage/' . $detail->profile_pic) }}" alt="">
             @else
-            <img class="__img-anonimo" src="{{ asset('storage/profile_pic_folder/anonimo.jpg') }}" alt="">
+            <img class="__img-anonimo" src="{{ asset('images/anonimo.jpg') }}" alt="">
             @endif
         </div>
         
