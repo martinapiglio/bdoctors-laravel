@@ -26,7 +26,7 @@
         <header>
             @include('layouts/partials/header')
         </header>
-        <main class="">
+        <main class="cont-cnt">
             @yield('content')
         </main>
     </div>
