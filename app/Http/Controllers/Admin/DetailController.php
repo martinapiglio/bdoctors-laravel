@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Charts\VoteMonth;
-
+use Carbon\Carbon;
 
 
 class DetailController extends Controller
@@ -98,7 +98,6 @@ class DetailController extends Controller
     public function show(Detail $detail)
     {
         $detail = Detail::where('user_id', Auth::id())->first();
-        //dd($detail);
         // Grafico 1
 
         $maxValueVote = 0;
@@ -147,27 +146,30 @@ class DetailController extends Controller
                 ],
             ]);
 
+        $chartN1->dataset('Voti', 'bar', array_values($userVotes))->options(['backgroundColor' => 'rgba(2, 100, 2, 0.4)']);
 
+        // labels for 12 months
+        $labels = [];
+        $currentDate = Carbon::now();
 
-        $chartN1->dataset('Voti', 'bar', array_values($userVotes));
+        for ($month = 1; $month <= 12; $month++) {
+            $labels[] = $currentDate->format('m/Y');
+            $currentDate->subMonth();
+        }
+
+        $labels = array_reverse($labels);
 
         // Grafico n'2
         $chartN2 = new VoteMonth;
-        $labels = [];
         $data = [];
         $maxValuePerMonth = 0;
 
-        $monthNamesItalian = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
-
-        for ($month = 1; $month <= 12; $month++) {
-            $monthName = $monthNamesItalian[$month - 1];
-            $yearMonth = date('Y-m', mktime(0, 0, 0, $month, 1));
-            $labels[] = $monthName;
+        foreach ($labels as $month) {
 
             $voteCount = DB::table('votes')
                 ->where([
                     ['user_id', '=', Auth::id()],
-                    [DB::raw("DATE_FORMAT(created_at, '%Y-%m')"), '=', $yearMonth]
+                    [DB::raw("DATE_FORMAT(created_at, '%m/%Y')"), '=', $month]
                 ])
                 ->count();
 
@@ -176,10 +178,11 @@ class DetailController extends Controller
                 $maxValuePerMonth = $voteCount;
             }
         }
+
         $maxValuePerMonth += 2;
 
         $chartN2->labels($labels);
-        $chartN2->title('Grafico Voti Totali per Mese')
+        $chartN2->title('Voti Totali per Mese')
             ->options([
                 'maintainAspectRatio' => false,
                 'scales' => [
@@ -208,33 +211,29 @@ class DetailController extends Controller
                 ],
             ]);
 
-        $chartN2->dataset('Voti', 'bar', $data);
+        $chartN2->dataset('Voti', 'bar', $data)->options(['backgroundColor' => 'rgba(2, 100, 2, 0.4)']);
 
-        // Grafico n'3
+        // // Grafico n'3
         $chartN3 = new ReviewsMessagesMonth;
-        $labels = [];
         $dataMessages = [];
         $dataReviews = [];
         $maxValuePerMonthMsg = 0;
         $maxValuePerMonthRev = 0;
         $maxValue = 0;
 
-        for ($month = 1; $month <= 12; $month++) {
-            $monthName = $monthNamesItalian[$month - 1];
-            $yearMonth = date('Y-m', mktime(0, 0, 0, $month, 1));
-            $labels[] = $monthName;
+        foreach ($labels as $month) {
 
             $reviewsCount = DB::table('reviews')
                 ->where([
                     ['user_id', '=', Auth::id()],
-                    [DB::raw("DATE_FORMAT(created_at, '%Y-%m')"), '=', $yearMonth]
+                    [DB::raw("DATE_FORMAT(created_at, '%m/%Y')"), '=', $month]
                 ])
                 ->count();
 
             $messagesCount = DB::table('messages')
                 ->where([
                     ['user_id', '=', Auth::id()],
-                    [DB::raw("DATE_FORMAT(created_at, '%Y-%m')"), '=', $yearMonth]
+                    [DB::raw("DATE_FORMAT(created_at, '%m/%Y')"), '=', $month]
                 ])
                 ->count();
 
@@ -257,7 +256,7 @@ class DetailController extends Controller
         $maxValue += 2;
 
         $chartN3->labels($labels);
-        $chartN3->title('Grafico Messaggi Totali per Mese')
+        $chartN3->title('Messaggi e Recensioni Totali per Mese')
             ->options([
                 'maintainAspectRatio' => false,
                 'scales' => [
@@ -286,8 +285,8 @@ class DetailController extends Controller
                 ],
             ]);
 
-        $chartN3->dataset('Messaggi', 'bar', $dataMessages)->options(['backgroundColor' => 'rgba(255, 99, 132, 0.2)']);
-        $chartN3->dataset('Recensioni', 'bar', $dataReviews)->options(['backgroundColor' => 'rgba(54, 162, 235, 0.2)']);
+        $chartN3->dataset('Messaggi', 'bar', $dataMessages)->options(['backgroundColor' => 'rgba(255, 99, 132, 0.4)']);
+        $chartN3->dataset('Recensioni', 'bar', $dataReviews)->options(['backgroundColor' => 'rgba(54, 162, 235, 0.4)']);
 
         return view('admin.details.show', compact('detail', 'chartN1', 'chartN2', 'chartN3'));
     }

@@ -1,82 +1,94 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="show-cnt text-center py-5">
+<div class="show-cnt text-center p-5">
 
     @if($detail)
 
-    <div>
-        @if($detail->profile_pic) 
-        <img id="profile-pic" src="{{ asset('storage/' . $detail->profile_pic) }}" alt="">
-        @else
-        <img class="__img-anonimo" src="{{ asset('storage/profile_pic_folder/anonimo.jpg') }}" alt="">
-        @endif
+    <h2 class="pb-5">Il tuo profilo</h2>
 
-        <br>
-
-        <div class="my-4">
-            @if($detail->curriculum)
-            <a href="{{ asset('storage/'. $detail->curriculum) }}" target="_blank" class="btn btn-primary">Mostra CV</a>
-            <a href="{{ asset('storage/'. $detail->curriculum) }}" download="{{ $detail->slug . '-cv'}}" class="btn btn-primary">Download CV</a>
+    <div class="d-flex flex-wrap gap-5">
+        <div id="profile-img">
+            @if($detail->profile_pic) 
+            <img id="profile-pic" src="{{ asset('storage/' . $detail->profile_pic) }}" alt="">
             @else
-            <span> <i>Non hai aggiunto nessun curriculum. Per farlo, vai nella sezione di <a href="{{route('admin.details.edit', $detail->slug)}}">modifica profilo</a></button></i> </span>
+            <img class="__img-anonimo" src="{{ asset('storage/profile_pic_folder/anonimo.jpg') }}" alt="">
             @endif
         </div>
-
-        <strong>Nome:</strong> {{ $detail->user?->name }} <br>
-        <strong>Cognome:</strong> {{ $detail->user?->surname }} <br>
-        <strong>Indirizzo:</strong> {{ $detail->user?->address }} <br>
-        <strong>Descrizione:</strong> {{ $detail->user?->description }} <br>
-        <strong>Email:</strong> {{ $detail->user?->email }} <br>
-        <strong>Numero di telefono:</strong> {{ $detail->phone_number }} <br>
-        <strong>Prestazioni:</strong> {{ $detail->services }}    <br>
-        <strong>Specializzazione principale:</strong> {{ $detail->user?->mainspec }}<br>
-        <strong>Specializzazioni aggiuntive:</strong>
-
-        @if(count($detail->specs) > 0)
-            <ul>
-                @foreach($detail->specs as $spec)
-                <li>{{$spec->title}}</li>
-                @endforeach
-            </ul>
-
-        @else
-        Unknown
-        @endif
-
-        <div class="generalita w-25 text-center m-auto">
-            <div class="testo-ordinato text-start">
-                <strong>Nome:</strong> {{ $detail->user?->name }} <br>
-                <strong>Cognome:</strong> {{ $detail->user?->surname }} <br>
-                <strong>Indirizzo:</strong> {{ $detail->user?->address }} <br>
-                <strong>Descrizione:</strong> {{ $detail->user?->description }} <br>
-                <strong>Email:</strong> {{ $detail->user?->email }} <br>
-                <strong>Numero di telefono:</strong> {{ $detail->phone_number }} <br>
-                <strong>Prestazioni:</strong> {{ $detail->services }}    <br>
-                <strong>Specializzazione principale:</strong> {{ $detail->user?->mainspec }}<br>
-                <strong>Specializzazioni aggiuntive:</strong> 
-                @if(count($detail->specs) > 0)
-                <ul>
-                    @foreach($detail->specs as $spec)
-                    <li>{{$spec->title}}</li>
-                    @endforeach
-                </ul>
-    
+        
+        <div class="generalita text-start">
+            <div class="my-4">
+                @if($detail->curriculum)
+                <a href="{{ asset('storage/'. $detail->curriculum) }}" target="_blank" class="btn curriculum-btn">Mostra CV</a>
+                <a href="{{ asset('storage/'. $detail->curriculum) }}" download="{{ $detail->slug . '-cv'}}" class="btn curriculum-btn">Download CV</a>
+                @else
+                <span> <i>Non hai aggiunto nessun curriculum. Per farlo, vai nella sezione di <a href="{{route('admin.details.edit', $detail->slug)}}">modifica profilo</a></button></i> </span>
+                @endif
+            </div>
+            <div class="testo-ordinato">
+                <div class="info-rows">
+                    <strong>Nome:</strong> {{ $detail->user?->name }} <br>
+                </div>
+                <div class="info-rows">
+                    <strong>Cognome:</strong> {{ $detail->user?->surname }} <br>
+                </div>
+                <div class="info-rows">
+                    <strong>Indirizzo:</strong> {{ $detail->user?->address }} <br>
+                </div>
+                <div class="info-rows">
+                    <strong>Descrizione:</strong> {{ $detail->user?->description }} <br>
+                </div>
+                <div class="info-rows">
+                    <strong>Specializzazione principale:</strong> {{ $detail->user?->mainspec }}<br>
+                </div>
+                <div class="info-rows">
+                    <strong>Specializzazioni aggiuntive:</strong> 
+                    @if(count($detail->specs) > 0)
+                    <ul>
+                        @foreach($detail->specs as $spec)
+                        <li>{{$spec->title}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="info-rows">
+                    <strong>Prestazioni:</strong> {{ $detail->services }}    <br>
+                </div>
+                <div class="info-rows">
+                    <strong>Email:</strong> {{ $detail->user?->email }} <br>
+                </div>
+                <div class="info-rows">
+                    <strong>Numero di telefono:</strong> {{ $detail->phone_number }} <br>
+                </div>
             @else  
             Unknown
             @endif 
             </div>
         </div>
-
-        
        
     </div>
+    
+    <section id="charts-section" class="pt-5 pb-3 mt-5 mb-4">
+        <h3>Le tue statistiche</h3>
+        <div class="charts d-flex flex-wrap justify-content-center">
+            <div class="p-5 chart">
+                {!! $chartN1->container() !!}
+            </div>
+            <div class="p-5 chart">
+                {!! $chartN2->container() !!}
+            </div>
+            <div class="p-5 chart">
+                {!! $chartN3->container() !!}
+            </div>
+            
+        </div>
+        
+    </section>
 
-    <button class="me-3 edit-btn btn" type="submit"><a href="{{route('admin.details.edit', $detail->slug)}}">Modifica</a></button>
+    <button class="me-3 edit-btn btn" type="submit"><a href="{{route('admin.details.edit', $detail->slug)}}">Modifica dati di profilo</a></button>
 
     {{-- modal --}}
     <button type="button" class="erase-btn btn" data-bs-toggle="modal" data-bs-target="#deleteProject">
-        Cancella
+        Cancella dati di profilo
     </button>
 
     <div class="modal fade text-dark" id="deleteProject" tabindex="-1" aria-hidden="true">
@@ -107,16 +119,6 @@
         </div>
     </div>
     {{-- // modal --}}
-
-    <div class="p-5">
-        {!! $chartN1->container() !!}
-    </div>
-    <div class="p-5">
-        {!! $chartN2->container() !!}
-    </div>
-    <div class="p-5">
-        {!! $chartN3->container() !!}
-    </div>
 
     @else
 
