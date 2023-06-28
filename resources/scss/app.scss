@@ -108,7 +108,7 @@ label {
     .bd-cont {
         // font-weight: bold;
         font-size: 100px;
-        padding-left: 7%;
+        // padding-left: 7%;
     }
 
     .altro-cnt {
@@ -385,6 +385,21 @@ label {
 
 
 // ------------- media query  phone
+
+@media screen and (min-width: 320px) {
+    .benvenuto {
+    
+        .bd-cont-sm {
+            // font-weight: bold;
+            font-size: 50px;
+            // padding-left: 7%;
+        }
+    
+        .altro-cnt-sm {
+            font-size: 25px;
+        }
+    }
+}
 
 @media screen and (max-width: 576px) {
     .main-sec {
