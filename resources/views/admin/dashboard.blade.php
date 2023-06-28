@@ -4,9 +4,9 @@
 <div class="dashboard-cnt h-100">
 
     @if(!$detail)
-    <div class="container h-100 d-flex justify-content-center align-items-center">
+    <div class="undetail-cnt container d-flex justify-content-center align-items-center">
         <h1 class="text-uppercase">
-            <a href="{{route('admin.details.create', $user->slug)}}">Completa il tuo profilo</a>
+            <a href="{{route('admin.details.create', $user->slug)}}">Ciao {{ $user->name }} ci siamo quasi,<br>arricchisci il tuo profilo!</a>
         </h1>
     </div>
     @else

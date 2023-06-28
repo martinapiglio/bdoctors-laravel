@@ -59,6 +59,12 @@ $secondary: rgb(97, 160, 155);
     }
 }
 
+.create-cnt {
+    h3 {
+        color: $primary;
+    }
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -154,6 +160,14 @@ label {
 
 .dashboard-cnt {
     // height: 75vh;
+    .undetail-cnt {
+        height: calc(100vh - 100.5px);
+        h1 {
+            a {
+             color: $primary;
+            }
+        }
+    }
     .sub-nav {
         // height: 3.5em;
         background-color: $primary;
@@ -170,7 +184,7 @@ label {
             ul.drop-list {
                 li {
                     a:hover {
-                        background-color: $secondary;
+                        background-color: $primary;
                         color: white;
                     }
                 }
@@ -194,7 +208,7 @@ label {
             text-align: center;
             width: 500px;
             padding: 20px 30px 20px 30px;
-        
+
             a:hover {
                 color: $secondary;
             }
@@ -411,13 +425,13 @@ label {
 
 @media screen and (min-width: 130px) {
     .benvenuto {
-    
+
         .bd-cont-sm {
             // font-weight: bold;
             font-size: 50px;
             // padding-left: 7%;
         }
-    
+
         .altro-cnt-sm {
             font-size: 25px;
         }
