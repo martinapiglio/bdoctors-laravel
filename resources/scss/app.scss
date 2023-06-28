@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 // @import "node_modules/font-awesome/scss/font-awesome.scss";
 $primary: rgb(40, 57, 99);
+$secondary: rgb(97, 160, 155);
 
 .custom-nav {
     height: 15vh;
@@ -152,42 +153,39 @@ label {
 }
 
 .dashboard-cnt {
-    height: 75vh;
-    .aside-cnt {
-        height: 100%;
-        .dash-aside {
-            height: 100%;
-            width: 20%;
-            color: white;
-            background-color: $primary;
+    // height: 75vh;
+    .sub-nav {
+        // height: 3.5em;
+        background-color: $primary;
+        color: white;
+        div {
+            .sub-nav-btn:hover {
+                background-color: $secondary;
+            }
         }
-        h1 {
-            a {
-                color: $primary;
-                font-weight: bold;
-                font-size: 1.3em;
+    }
+    .main-sec {
+        .jumbo-cont {
+            height: 400px;
+            img {
+                height: 100%;
+            }
+        }
+        .dash-reminders {
+            color: $primary;
+            background-color: rgb(239, 239, 239);
+            border-radius: 15px;
+            text-align: center;
+            width: 500px;
+            padding: 20px 30px 20px 30px;
+        
+            a:hover {
+                color: $secondary;
             }
         }
     }
 }
-.sub-nav {
-    height: 3.5em;
-    background-color: $primary;
-    color: white;
-    div {
-        .sub-nav-btn:hover {
-            background-color: $secondary;
-        }
-    }
-}
-.main-sec {
-    .jumbo-cont {
-        height: 400px;
-        img {
-            height: 100%;
-        }
-    }
-}
+
 .show-cnt {
     background-color: $primary;
     color: white;
@@ -375,19 +373,6 @@ label {
     font-weight: bold;
     color: $primary;
     font-size: 30px;
-}
-
-.dash-reminders {
-    color: $primary;
-    background-color: rgb(239, 239, 239);
-    border-radius: 15px;
-    text-align: center;
-    width: 500px;
-    padding: 20px 30px 20px 30px;
-
-    a:hover {
-        color: $secondary;
-    }
 }
 
 
