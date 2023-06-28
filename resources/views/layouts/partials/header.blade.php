@@ -9,7 +9,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav me-auto __home-link-ctn">
                 <li class="nav-item links-container">
                     <a class="links title-home" href="{{url('/') }}">{{ __('Home') }}</a>
                 </li>
@@ -49,5 +49,10 @@
                 @endguest
             </ul>
         </div>
+<<<<<<< HEAD
 
 </nav>
+=======
+    </div>
+</nav>
+>>>>>>> fra_navbar_lara_28_06
