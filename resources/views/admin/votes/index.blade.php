@@ -30,6 +30,7 @@
         <thead>
           <tr>
             <th scope="col">Nome votante</th>
+            <th scope="col">Data del voto</th>
             <th scope="col">Voto</th>            
           </tr>
         </thead>
@@ -37,8 +38,8 @@
             @foreach ($votes as $vote)
           <tr class="row-table">
             <td> {{ $vote->voter }} </td>
+            <td> {{ date('d/m/Y H:i', strtotime($vote->created_at)) }} </td>
             <td> {{ $vote->vote }} / 5</td>
-            
           </tr>
             @endforeach
         </tbody>
