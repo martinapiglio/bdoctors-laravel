@@ -336,8 +336,14 @@ label {
             color: white;
         }
 
+        .hover-link:hover{
+            color: #62a09b;
+        }
+
     }
 }
+
+
 
 .review-title {
     font-weight: bold;
@@ -381,6 +387,10 @@ label {
     // .sub-nav {
     //     height: 10%;
     // }
+
+    .view-body{
+        display: none;
+    }
 }
 
 
@@ -405,6 +415,10 @@ label {
             width: 100%;
             object-fit: cover;
         }
+    }
+
+    .view-body{
+        display: none;
     }
 }
 

@@ -17,8 +17,8 @@
             @foreach ($reviews as $review)
           <tr class="row-table">
             <td> {{ $review->name }} </td>
-            <td> {{ $review->description }} </td>
-            <td> <a href="{{route('admin.reviews.show', $review)}}"> Apri recensione </a> </td>
+            <td class="view-body"> {{ $review->description }} </td>
+            <td class="hover-link"> <a href="{{route('admin.reviews.show', $review)}}"> Apri recensione </a> </td>
           </tr>
             @endforeach
         </tbody>

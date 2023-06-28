@@ -19,9 +19,9 @@
             @foreach ($messages as $message)
           <tr class="row-table">
             <td> {{ $message->name }} </td>
-            <td> {{ $message->email }} </td>
+            <td class="view-body"> {{ $message->email }} </td>
             <td> {{ $message->subject }} </td>
-            <td> <a href="{{route('admin.messages.show', $message)}}"> Apri messaggio </a> </td>
+            <td class="hover-link"> <a href="{{route('admin.messages.show', $message)}}"> Apri messaggio </a> </td>
           </tr>
             @endforeach
         </tbody>
