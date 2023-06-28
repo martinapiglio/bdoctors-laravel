@@ -2,10 +2,16 @@
 @section('content')
 
 <div class="benvenuto d-flex flex-column justify-content-center gap-4">
-    <div class="bd-cont ms-5">
+    <div class="bd-cont d-none d-md-block ms-5">
         BDoctors
     </div>
-    <div class="altro-cnt d-flex justify-content-center">
+    <div class="bd-cont-sm d-block d-md-none ms-5">
+        BDoctors
+    </div>
+    <div class="altro-cnt d-none d-md-block text-center">
+        La Piattaforma per professionisti come te
+    </div>
+    <div class="altro-cnt-sm d-md-none text-center">
         La Piattaforma per professionisti come te
     </div>
 </div>
