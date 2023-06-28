@@ -23,7 +23,7 @@
                 <button class="sub-nav-btn btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Menu
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu drop-list">
                   <li><a class="dropdown-item" href="{{route('admin.details.show', $detail->slug)}}">Mostra i dati del tuo profilo</a></li>
                   <li><a class="dropdown-item" href="{{route('admin.details.edit', $detail->slug)}}">Modifica i dati del tuo profilo</a></li>
                   <li><a class="dropdown-item" href="{{route('admin.messages.index', $detail->slug)}}">Messaggi</a></li>

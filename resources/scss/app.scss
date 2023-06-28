@@ -158,9 +158,22 @@ label {
         // height: 3.5em;
         background-color: $primary;
         color: white;
+        .primi-link {
+            a:hover {
+                color: $secondary;
+            }
+        }
         div {
             .sub-nav-btn:hover {
                 background-color: $secondary;
+            }
+            ul.drop-list {
+                li {
+                    a:hover {
+                        background-color: $secondary;
+                        color: white;
+                    }
+                }
             }
         }
     }
