@@ -7,7 +7,7 @@
       <div>
         <h3>Le tue sponsorizzazioni</h3>
         @if (count($user->detail->sponsorships) > 0)
-        <div class="container py-5 d-flex gap-3 justify-content-center">
+        <div class="container py-5 d-flex gap-3 justify-content-center flex-wrap">
           @foreach($user->detail->sponsorships as $userSponsorship)
           <div class="card" style="width: 18rem;">
               <div class="card-body">
@@ -33,9 +33,9 @@
   
       <div class="mt-5">
         <h3>Acquista una sponsorizzazione tra le disponibili</h3>
-        <div class="container py-5 d-flex gap-3 justify-content-center">
+        <div class="container py-5 d-flex gap-3 justify-content-center flex-wrap">
           @foreach($sponsorships as $sponsorship)
-          <div id="card-{{$sponsorship->name}}" class="card" style="width: 18rem; height:190px;">
+          <div id="card-{{$sponsorship->name}}" class="card" style="width: 18rem; min-height:190px;">
               <div class="card-body">
                 <h5 class="{{$sponsorship->name}}" class="card-title"> {{ $sponsorship->name }} </h5>
                 <h6 class="card-subtitle mb-2 text-muted">Prezzo: {{ $sponsorship->price }} €</h6>
