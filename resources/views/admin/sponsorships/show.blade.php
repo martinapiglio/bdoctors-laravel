@@ -9,7 +9,7 @@
     <h3 class="text-center">
         Ciao {{ $user->name }}, sei nella pagina di checkout. 
     <br>
-        Hai scelto la sponsorizzazione <i>{{ $sponsorship->name }}</i>
+        Hai scelto la sponsorizzazione <span>{{ $sponsorship->name }}</span>
     </h3>
 
     <form class="container" method="post" action="{{ route('admin.sponsorships.store', $sponsorship->slug) }}">
@@ -19,14 +19,14 @@
 
         <div class="payment-container">
 
-            <label for="fname">Metodi di pagamento accettati: <b>MasterCard <i class="fa-brands fa-cc-mastercard"></i>, Visa <i class="fa-brands fa-cc-visa"></i>, PayPal <i class="fa-brands fa-cc-paypal"></i></b></label>
+            <label for="fname">Metodi di pagamento accettati: </label>
     
-            <div class="icon-container">
-                <i class="fa fa-cc-visa" style="color:navy;"></i>
-                
-                <i class="fa fa-cc-amex" style="color:blue;"></i>
-                <i class="fa-solid fa-arrow-right"></i>
-                <i class="fa fa-cc-discover" style="color:orange;"></i>
+            <div id="div-icone" class="icon-container">
+                <i class="fa-brands fa-cc-mastercard" style="color:white; font-size:2.3em"></i>
+                <i class="fa-brands fa-cc-visa" style="color:white"></i>
+                <i class="fa-brands fa-cc-amex" style="color:white;"></i>
+                <i class="fa-brands fa-cc-paypal" style="color:white"></i>
+                <i class="fa-brands fa-cc-discover" style="color:white;"></i>
             </div>
 
             <label>Importo: <b>{{ $sponsorship->price }} €</b> </label>

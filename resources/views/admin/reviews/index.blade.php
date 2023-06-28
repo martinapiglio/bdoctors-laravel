@@ -8,7 +8,8 @@
     <table class="table mb-3">
         <thead>
           <tr>
-            <th scope="col">Nome</th>
+            <th scope="col">Nome recensore</th>
+            <th scope="col">Data della recensione</th>
             <th scope="col">Recensione</th>
             <th scope="col"></th>
           </tr>
@@ -17,8 +18,9 @@
             @foreach ($reviews as $review)
           <tr class="row-table">
             <td> {{ $review->name }} </td>
-            <td> {{ $review->description }} </td>
-            <td> <a href="{{route('admin.reviews.show', $review)}}"> Apri recensione </a> </td>
+            <td> {{ date('d/m/Y H:i', strtotime($review->created_at)) }} </td>
+            <td class="view-body"> {{ $review->description }} </td>
+            <td class="hover-link"> <a href="{{route('admin.reviews.show', $review)}}"> Apri recensione </a> </td>
           </tr>
             @endforeach
         </tbody>
