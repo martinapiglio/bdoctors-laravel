@@ -131,7 +131,7 @@
     @endif
 
     <div class="my-4">
-        <a href="{{ route('admin.dashboard') }}">Torna alla dashboard</a>
+        <a class="link-dash" href="{{ route('admin.dashboard') }}">Torna alla dashboard</a>
     </div>
 
 </div>

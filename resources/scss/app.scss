@@ -592,3 +592,11 @@ label {
         }
     }
 }
+
+.link-dash {
+    border-bottom: 1px solid white;
+    &:hover {
+        color: $secondary;
+        border-bottom: 1px solid $secondary;
+    }
+}
