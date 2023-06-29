@@ -1,22 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm custom-nav">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm custom-nav p-4 ">
 
-        <div class="logo-cont p-3">
-            <img class="img-fluid" src="{{asset("images/BDOCTORS-LogoB.jpg")}}" alt="logone">
+        <div class="logo-cont ">
+            <a href="{{url('/') }}"><img class="img-fluid" src="{{asset("images/BDOCTORS-LogoB.jpg")}}" alt="logone"></a>
+
         </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav me-auto __home-link-ctn">
+            <ul class="navbar-nav me-auto __home-link-ctn text-center px-3">
                 <li class="nav-item links-container">
                     <a class="links title-home" href="{{url('/') }}">{{ __('Home') }}</a>
                 </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto d-flex gap-3 align-items-center">
+            <ul class="navbar-nav ml-auto d-flex gap-3 align-items-center mb-3 px-3">
                 <!-- Authentication Links -->
                 @guest
                 @if (Route::has('register'))

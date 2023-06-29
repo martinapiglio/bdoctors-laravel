@@ -6,11 +6,11 @@ $header-height: 15vh;
 $footer-height: 10vh;
 
 .custom-nav {
-    height: $header-height;
+    min-height: $header-height;
     position: fixed;
     z-index: 2;
     width: 100%;
-    padding: 0 5rem 0;
+    // padding: 0 5rem 0;
     font-size: 18px;
     font-weight: bold;
 
@@ -58,10 +58,9 @@ $footer-height: 10vh;
 }
 
 .logo-cont {
-    height: 100%;
-
+    width: 100px;
+    min-width: 100px;
     img {
-        height: 100%;
         width: 100%;
     }
 }
@@ -210,7 +209,7 @@ label {
     }
 }
 .sub-nav {
-    height: 3.5em;
+    min-height: 3.5em;
     background-color: $primary;
     color: white;
     div {
