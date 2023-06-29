@@ -84,12 +84,14 @@
         
     </section>
 
-    <button class="me-3 edit-btn btn" type="submit"><a href="{{route('admin.details.edit', $detail->slug)}}">Modifica dati di profilo</a></button>
-
-    {{-- modal --}}
-    <button type="button" class="erase-btn btn" data-bs-toggle="modal" data-bs-target="#deleteProject">
-        Cancella dati di profilo
-    </button>
+    <div class="buttons-helper d-flex d-sm-flex flex-wrap justify-content-center gap-2">
+        <button class="edit-btn btn" type="submit"><a href="{{route('admin.details.edit', $detail->slug)}}">Modifica dati di profilo</a></button>
+    
+        {{-- modal --}}
+        <button type="button" class="erase-btn btn" data-bs-toggle="modal" data-bs-target="#deleteProject">
+            Cancella dati di profilo
+        </button>
+    </div>
 
     <div class="modal fade text-dark" id="deleteProject" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">

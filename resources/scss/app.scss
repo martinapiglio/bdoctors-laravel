@@ -190,42 +190,79 @@ label {
 }
 
 .dashboard-cnt {
-    height: 75vh;
-    .aside-cnt {
-        height: 100%;
-        .dash-aside {
-            height: 100%;
-            width: 20%;
-            color: white;
-            background-color: $primary;
-        }
+    // height: calc(100vh - 110.6px);
+    .welc-cont {
+        height: calc(100vh - 190px);
         h1 {
-            a {
+            #welcome-ref {
                 color: $primary;
-                font-weight: bold;
-                font-size: 1.3em;
+            }
+            #welcome-ref:hover {
+                color: $secondary;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .text-hello {
+        color: $primary;
+    }
+    .sub-nav {
+        min-height: 3.5em;
+        background-color: $primary;
+        color: white;
+        .primi-link {
+            a:hover {
+                color: $secondary;
+                text-decoration: underline;
+            }
+        }
+        div {
+            .sub-nav-btn:hover {
+                background-color: $secondary;
+            }
+            .drop-list {
+                li {
+                    a:hover {
+                        background-color: $primary;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+    .main-sec {
+        .jumbo-cont {
+            height: 400px;
+            img {
+                height: 100%;
+            }
+        }
+        .dash-reminders {
+            color: $primary;
+            background-color: rgb(239, 239, 239);
+            border-radius: 15px;
+            text-align: center;
+            width: 500px;
+            padding: 20px 30px 20px 30px;
+
+            a {
+               text-decoration: underline;
+            }
+        
+            a:hover {
+                color: $secondary;
             }
         }
     }
 }
-.sub-nav {
-    min-height: 3.5em;
-    background-color: $primary;
-    color: white;
-    div {
-        .sub-nav-btn:hover {
-            background-color: $secondary;
-        }
+
+.create-cnt {
+    h3 {
+        color: $primary;
     }
 }
-.main-sec {
-    .jumbo-cont {
-        height: 400px;
-        img {
-            height: 100%;
-        }
-    }
-}
+
 .show-cnt {
     background-color: $primary;
     color: white;
@@ -432,19 +469,6 @@ label {
     font-weight: bold;
     color: $primary;
     font-size: 30px;
-}
-
-.dash-reminders {
-    color: $primary;
-    background-color: rgb(239, 239, 239);
-    border-radius: 15px;
-    text-align: center;
-    width: 500px;
-    padding: 20px 30px 20px 30px;
-
-    a:hover {
-        color: $secondary;
-    }
 }
 
 // ------------- media query  tablet
