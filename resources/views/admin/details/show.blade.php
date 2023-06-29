@@ -7,7 +7,7 @@
 
     <h2 class="pb-5">Il tuo profilo</h2>
 
-    <div class="d-flex flex-wrap gap-3">
+    <div class="container-img-generalita d-flex flex-wrap gap-5">
         <div id="profile-img">
             @if($detail->profile_pic) 
             <img id="profile-pic" src="{{ asset('storage/' . $detail->profile_pic) }}" alt="">
@@ -16,7 +16,7 @@
             @endif
         </div>
         
-        <div class="generalita text-start">
+        <div class="generalita text-start flex-grow-1">
             <div class="my-4">
                 @if($detail->curriculum)
                 <a href="{{ asset('storage/'. $detail->curriculum) }}" target="_blank" class="btn curriculum-btn">Mostra CV</a>

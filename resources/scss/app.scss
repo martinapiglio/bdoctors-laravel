@@ -393,8 +393,14 @@ label {
     }
 }
 
+.container-img-generalita {
+    min-height: 520px;
+}
+
 .generalita {
     max-width: 850px;
+    height: 500px;
+    overflow: hidden;
     .curriculum-btn {
         border-color: #62a09b;
         transition: all 0.2s;
@@ -408,7 +414,8 @@ label {
 
 .testo-ordinato {
     font-size: 18px;
-
+    height: 100%;
+    overflow: scroll;
     .info-rows {
         padding-bottom: 0.3rem;
     }
@@ -487,11 +494,15 @@ label {
     .view-body {
         display: none;
     }
+
+    .generalita {
+        height: 100%;
+    }
 }
 
 // ------------- media query  phone
 
-@media screen and (min-width: 130px) {
+@media screen and (max-width: 130px) {
     .benvenuto {
         .bd-cont-sm {
             // font-weight: bold;
@@ -502,6 +513,9 @@ label {
         .altro-cnt-sm {
             font-size: 25px;
         }
+    }
+    .generalita {
+        height: 100%;
     }
 }
 
